@@ -9,9 +9,9 @@ export default function Header(){
 
 
     return <div className="head">
-        {/* <img alt="logo"/> */}
+        <img alt="logo"/>
         <h1>free library </h1>
-        {/* <img alt="avatar"/> */}
+        <img alt="avatar"/>
         <p>enter the temple of wisdom</p>
         {/* <NavLink to={"/login"}> */}
             <button>LOG IN</button>

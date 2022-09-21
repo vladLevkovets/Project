@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 
 function Autors() {
 let ALF=["A","B","C",'D',"E","F","G","H",'I',"G",'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']

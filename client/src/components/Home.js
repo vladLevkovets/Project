@@ -6,7 +6,7 @@ useEffect(()=>{
     
     
     axios 
-  .get(`https://www.googleapis.com/books/v1/volumes?q=Rambo&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+  .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:Rambo&langRestrict=en&maxResults=40&download=epub&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
   .then(otvet=>{
     console.log(otvet)
 })
