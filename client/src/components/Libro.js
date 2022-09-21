@@ -1,19 +1,21 @@
 import {useState,useEffect} from 'react'
 import axios from 'axios'
 import {Link} from "react-router-dom"
+import { useRecoilState } from 'recoil'
+import { titleState, authorState,idState } from '../State.js'
 
-const BookViewer = (search) => { 
-    const [title,setTitle]=useState("")
+const BookViewer = () => { 
+    const [title,setTitle]=useRecoilState(titleState)
+    const [id,setId]=useRecoilState(idState)
     const [autor,setAutor]=useState("")
     const [desc,setDesc]=useState("")
     const [cat,setCat]=useState("")
-    const [id,setId]=useState("")
     const [imgUrl,setImgUrl]=useState("")
     
     
     useEffect(()=>{
     axios 
-      .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${search}&printType=books&langRestrict=en&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+      .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${id}&printType=books&langRestrict=en&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
       .then(otvet=>{
         console.log(otvet)
         setTitle(otvet.data.items[0].volumeInfo.title)
