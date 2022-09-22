@@ -12,17 +12,12 @@ const navigate = useNavigate()
 const [page,setPage]=useState([])
 const [id,setId]=useRecoilState(idState)
 
-var arr=[]
-const findList=()=>{
+const findList=(arg)=>{
     axios 
-         .get(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&printType=books&langRestrict=en&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+         .get(`https://www.googleapis.com/books/v1/volumes?q=id&langRestrict=en&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
          .then(otvet=>{
            console.log(otvet)
            setPage([...otvet.data.items])
-          //  setTitle(otvet.data.items.volumeInfo.title)
-          //  setAutor(otvet.data.items.volumeInfo.authors)
-          //  setCat(otvet.data.items.volumeInfo.categories)
-          //  setImgUrl(otvet.data.items.volumeInfo.imageLinks.smallThumbnail)
           
        })
        .catch(error=>{
@@ -40,7 +35,7 @@ findList()},[]
 let ALF=["A","B","C",'D',"E","F","G","H",'I',"G",'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 function  alfabet (){
     return ALF.map((e,i)=>{
-       return <Link to="/Library/:autors" key={i}>{e}</Link>
+       return <Link to={`/Authors/${e}`} key={i}>{e}</Link>
     })
 }
 const handleChange=(e)=>{
@@ -50,7 +45,7 @@ const handleChange=(e)=>{
 const search=(e)=>{
     e.preventDefault()
   setTitle(tit)
-  findList(`intitle:${tit}`)
+  navigate(`/Search/${tit}`)
 }
 
 const printList=()=>{
@@ -58,7 +53,7 @@ const printList=()=>{
   console.log(page)
  return page.map((book,i)=>{
    return <div key={i}>
-   <Link to="/Libro" onClick={setId(book.id)}  id={book.id}>
+   <Link to={`/Libro/${book.id}`} >
     <div>
       <p> {`${book.volumeInfo.authors}  ${book.volumeInfo.title}`}</p>
       <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover"/>
@@ -75,7 +70,7 @@ return (
     
      <div>
         <div>
-         <Link to="/Library"><img src="./log_logout_door_1563.png" alt="back" id="dveri"/></Link>
+         <Link to="/Library"><img src="./log_logout_door_1563.png" alt="back" class="dveri"/></Link>
          
          {alfabet()}
          </div>

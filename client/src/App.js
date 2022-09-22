@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import Home from './components/Home'
 import Nav from './components/Nav'
 import Library from './components/Library'
-import Autors from './components/Autors'
+import Authors from './components/Authors'
 import Libro from'./components/Libro'
 import Search from './components/Search.js'
 // import Footer from './components/Footer'
@@ -19,9 +19,9 @@ export default function App() {
         <Routes>
             <Route path="/" element={<Home />}/> 
             <Route path="/Library" element={<Library/>}/>
-            <Route path="/Library/*" element={<Autors/>}/> 
-            <Route path="/Libro" element={<Libro/>}/>
-            <Route path="/Search" element={<Search/>}/>
+            <Route path="/Authors/:letter" element={<Authors/>}/> 
+            <Route path="/Libro/:id" element={<Libro/>}/>
+            <Route path="/Search/:title" element={<Search/>}/>
             
           
             
