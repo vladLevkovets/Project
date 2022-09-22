@@ -70,7 +70,7 @@ return (
     
      <div>
         <div>
-         <Link to="/Library"><img src="./log_logout_door_1563.png" alt="back" class="dveri"/></Link>
+         <Link to="/Library"><img src="./log_logout_door_1563.png" alt="back" className="dveri"/></Link>
          
          {alfabet()}
          </div>

@@ -7,7 +7,7 @@ export const titleState = atom({
 
   export const authorsState = atom({
     key: 'authorsState',
-    default: '',
+    default: [],
   });  
 
   export const idState = atom({

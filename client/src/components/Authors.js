@@ -10,7 +10,7 @@ let params=useParams()
 let ALF=["A","B","C",'D',"E","F","G","H",'I',"G",'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 const [quantity,setQuantity]=useState("")
 const [authors,setAuthors]=useRecoilState(authorsState)
-
+var ALL=[]
 
 function  alfabet (){
     return ALF.map((e,i)=>{
@@ -20,7 +20,7 @@ function  alfabet (){
 
 const DB =()=>{
 axios 
- .get (`https://www.googleapis.com/books/v1/volumes?q=id&printType=books&langRestrict=en&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+ .get (`https://www.googleapis.com/books/v1/volumes?q=b+inauthor:"a"&printType=books&langRestrict=en&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
  .then (res=>{
     setQuantity(res.data.totalItems)
     .catch(error=>{
@@ -31,31 +31,39 @@ axios
 
 
 useEffect(()=>{
+    
 DB()
 },[])
 
 useEffect(()=>{
+    var ALL=[]
 for (let i=0;i<=quantity;i+=40){
   axios
-    .get(`https://www.googleapis.com/books/v1/volumes?q=id&printType=books&langRestrict=en&startIndex=${i}&maxResults=40&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+    .get(`https://www.googleapis.com/books/v1/volumes?q=b+inauthor:"a"&printType=books&langRestrict=en&startIndex=${i}&maxResults=40&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
     .then(res=>{
+        debugger
+        console.log(res.data.items)
         res.data.items.map(book =>{
+             console.log(book)
             if(book.volumeInfo.printType=="BOOK" ){
-              for  (var a of book.volumeInfo.authors){
-                  if (authors.findIndex(man=>man!==a)===-1) {
-                        setAuthors([...authors,a])
-                    }
-                }
+                console.log(book.volumeInfo.authors)
+                book.volumeInfo.authors.map(man=>{
+                    ALL.push(man)
+                })
             }
         }) 
     })
     .catch(error=>{
         console.log(error)
     })
+    
 }
+console.log(ALL)
+setAuthors([...ALL])
 },[quantity])
 
-console.log(authors)
+
+
 
 
 
