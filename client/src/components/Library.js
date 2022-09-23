@@ -14,7 +14,7 @@ const [id,setId]=useRecoilState(idState)
 
 const findList=(arg)=>{
     axios 
-         .get(`https://www.googleapis.com/books/v1/volumes?q=id&langRestrict=en&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+         .get(`https://www.googleapis.com/books/v1/volumes?q=id&langRestrict=en&printType=books&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
          .then(otvet=>{
            console.log(otvet)
            setPage([...otvet.data.items])
@@ -32,12 +32,12 @@ findList()},[]
 )
 
 
-let ALF=["A","B","C",'D',"E","F","G","H",'I',"G",'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-function  alfabet (){
-    return ALF.map((e,i)=>{
-       return <Link to={`/Authors/${e}`} key={i}>{e}</Link>
-    })
-}
+// let ALF=["A","B","C",'D',"E","F","G","H",'I',"G",'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+// function  alfabet (){
+//     return ALF.map((e,i)=>{
+//        return <Link to={`/Authors/${e}`} key={i}>{e}</Link>
+//     })
+// }
 const handleChange=(e)=>{
   setTit(e.target.value)
   
@@ -72,7 +72,7 @@ return (
         <div>
          <Link to="/Library"><img src="./log_logout_door_1563.png" alt="back" className="dveri"/></Link>
          
-         {alfabet()}
+         {/* {alfabet()} */}
          </div>
           <form onSubmit={search}>
            <input onChange={handleChange}/>

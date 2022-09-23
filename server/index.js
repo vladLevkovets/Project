@@ -29,4 +29,4 @@ app.use('/users', UsersR);
 
 
 // Set the server to listen on port 3000
-app.listen(4000, () => console.log(`server on duty`))
+app.listen(4040, () => console.log(`server on duty`))

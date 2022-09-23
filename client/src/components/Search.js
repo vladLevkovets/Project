@@ -35,12 +35,12 @@ useEffect(() => {
 
 
 
-let ALF=["A","B","C",'D',"E","F","G","H",'I',"G",'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-function  alfabet (){
-    return ALF.map((e,i)=>{
-       return <Link to={`/Authors/${e}`} key={i}>{e}</Link>
-    })
-}
+// let ALF=["A","B","C",'D',"E","F","G","H",'I',"G",'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+// function  alfabet (){
+//     return ALF.map((e,i)=>{
+//        return <Link to={`/Authors/${e}`} key={i}>{e}</Link>
+//     })
+// }
 
 const handleChange=(e)=>{
     setTit(e.target.value)
@@ -73,7 +73,7 @@ const printList=()=>{
         <div>
         
         <Link to="/Library"><img src={doorPic} alt="back" class="dveri"/></Link>
-         {alfabet()}
+         {/* {alfabet()} */}
          </div>
           <form onSubmit={search}>
            <input onChange={handleChange}/>

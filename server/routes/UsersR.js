@@ -6,10 +6,10 @@ const express = require('express'),
 
 //   router.get('/',controller.findAll);
 
-//   router.get('/:prod',controller.findOne);
 
-  router.post('/add',controller.add);
+router.post('/add',controller.add);
 
+router.get('/:nickName',controller.findOne);
 //   router.post('/delete',controller.delete);
 
 //   router.post('/update',controller.update);

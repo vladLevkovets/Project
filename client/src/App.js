@@ -6,7 +6,7 @@ import Library from './components/Library'
 import Authors from './components/Authors'
 import Libro from'./components/Libro'
 import Search from './components/Search.js'
-// import Footer from './components/Footer'
+import Footer from './components/Footer'
 import Header from './components/Header'
 export default function App() {
 
@@ -31,7 +31,7 @@ export default function App() {
         </div>
     
     </Router>
-    {/* <Footer/> */}
+    <Footer/>
     </div>
   );
 }
