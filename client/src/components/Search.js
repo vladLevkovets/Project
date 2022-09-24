@@ -18,7 +18,7 @@ let params=useParams()
 
    const searchFunc = () => {
      axios 
-        .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&langRestrict=en&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+        .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&langRestrict=en&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
         .then(otvet=>{
             console.log(otvet)
             setPage([...otvet.data.items])
@@ -55,13 +55,21 @@ const handleChange=(e)=>{
 const printList=()=>{
     if (page.length > 0) {return page.map((book,i)=>{
                 return <div key={i}>
-                <Link to={`/Libro/${book.id}`} >
-                 <div>
-                   <p> {`${book.volumeInfo.authors}  ${book.volumeInfo.title}`}</p>
-                   <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover"/>
-                   <p>{`${book.volumeInfo.categories}`}</p>
-                 </div>
-                 </Link>
+                <Link to={`/Libro/${book.id}`} className="toBook" >
+    <div className="cellS">
+      <div className="leftS">
+      <p className="discr">Author:</p>  
+      <p>{`${book.volumeInfo.authors}`}</p>
+      <p className="discr">Title:</p>
+      <p>{`${book.volumeInfo.title}`}</p>
+      <p className="discr">Category:</p>
+      <p>{`${book.volumeInfo.categories}`}</p>
+    </div>
+      <div className="rightS">
+      <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover" className="coverS"/>
+      </div>
+    </div>
+    </Link>
                  </div>
               })}
               console.log(page);
@@ -70,16 +78,16 @@ const printList=()=>{
 
  return (
     <div>
-        <div>
         
-        <Link to="/Library"><img src={doorPic} alt="back" class="dveri"/></Link>
+        {/* <Link to="/Library"><img src={doorPic} alt="back" class="dveri"/></Link> */}
          {/* {alfabet()} */}
-         </div>
-          <form onSubmit={search}>
+         <form onSubmit={search} id="libSerch">
+         <Link to="/Library" ><img src={doorPic} alt="back" className="dveri"/></Link>
            <input onChange={handleChange}/>
            <button>Search</button>
            </form>
-           <section>
+           
+           <section className="bigPage">
             {printList()}
            </section>
            

@@ -14,7 +14,7 @@ const [id,setId]=useRecoilState(idState)
 
 const findList=(arg)=>{
     axios 
-         .get(`https://www.googleapis.com/books/v1/volumes?q=id&langRestrict=en&printType=books&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+         .get(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
          .then(otvet=>{
            console.log(otvet)
            setPage([...otvet.data.items])
@@ -52,12 +52,17 @@ const printList=()=>{
   
   console.log(page)
  return page.map((book,i)=>{
-   return <div key={i}>
-   <Link to={`/Libro/${book.id}`} >
-    <div>
-      <p> {`${book.volumeInfo.authors}  ${book.volumeInfo.title}`}</p>
-      <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover"/>
+   return <div key={i} >
+   <Link to={`/Libro/${book.id}`} className="toBook" >
+    <div className="cell">
+      <div className="left">
+      <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover" className="cover"/>
+      </div>
+      <div className="right">
+      <p>{`${book.volumeInfo.authors}`}</p>
+      <p>{`${book.volumeInfo.title}`}</p>
       <p>{`${book.volumeInfo.categories}`}</p>
+    </div>
     </div>
     </Link>
     </div>
@@ -70,15 +75,15 @@ return (
     
      <div>
         <div>
-         <Link to="/Library"><img src="./log_logout_door_1563.png" alt="back" className="dveri"/></Link>
+         {/* <Link to="/Library"><img src="./log_logout_door_1563.png" alt="back" className="dveri"/></Link> */}
          
          {/* {alfabet()} */}
          </div>
-          <form onSubmit={search}>
+          <form onSubmit={search} id="libSerch">
            <input onChange={handleChange}/>
            <button>Search</button>
            </form>
-           <section>
+           <section className="page">
             {printList()}
            </section>
            

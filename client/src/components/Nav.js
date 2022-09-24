@@ -10,7 +10,9 @@ export default  function Nav () {
 
 
 
-    return <div>
+    return <div id="nav">
+           
+       
                 <NavLink to="/">
                    <p> Home</p>
                     </NavLink>
