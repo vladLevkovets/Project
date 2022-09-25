@@ -12,6 +12,8 @@ padding: 0;
 .dveri{
   width:2vw;
 }
+
+/*HEADER CONFIG*/
 .head{
   
   height: 20vh;
@@ -33,13 +35,110 @@ width: 20vw;
 .head h1{
   background-color: #12bdf7cc;
   color: aliceblue;
-  font-size:3cm;
-  width: 60vw;
+  font-size:2.5cm;
+  width: 50vw;
   }
+.scroll{
+  padding-top: 3vh;
+  height: 100%;
+  width: 15vw;
+  text-align: right;
+  background-color:#12bdf7cc ;
+  transition: 0.5s easy-in;
+}
+.closed{
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  transition: 0.5s easy-in;
+}
+.open{
+  padding: 1vh 2vw ;
+  background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-scroll.png);
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 105%;
+  height: 13vh;
+}
+#b1{
+  margin-right: 85%;
+  background-color: moccasin;
+}
+#scrollIn{
+  height:10vh;
+}
+#b2{
+  margin-top: 1%;
+  margin-left: 100%;
+  margin-bottom: 2%;
+  font-style: italic;
+  font-family: Georgia;
+  font-size: larger;
+  border: 0px;
+  color:crimson ;
+  background-color: inherit;
+}
+
+.form{
+    background-image: url(../src/pictures/images\ \(4\).jfif);
+    background-size: 100% 100%;
+     display: flex;
+     flex-direction: column;
+    justify-content: space-between; 
+    width: 29vw;
+    padding-left: 5%;
+  }
+.guest  {
+    font-size: smaller;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 65%;
+    height:50%;
+    transform: rotate(-2deg);
+  }
+.guest button{
+    margin-left:5% ;
+    width: 40%;
+    font-size: smaller;
+  }
+.user{
+    margin-top:1.5vh ;
+    font-size: smaller;
+    display: flex;
+    justify-content: flex-end;
+    
+    width: 65%;
+    transform: rotate(-2deg);
+  }
+.user div {
+    text-align: center;
+    margin-top: 3vh;
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+.user div button{
+    
+    font-size: smaller;
+    width: 40%;
+  }
+  /* END HEADER CONFIG */
+
 .Main{
     display: flex;
     flex-direction: column;
   }
+
+  /* NAVBAR */
 #nav{
   position: sticky;
   top:0vh;
@@ -49,8 +148,12 @@ width: 20vw;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 5vh;
+  height: 3vh;
 }
+
+
+
+/* FOOTER */
 .footer{  
   display: flex;
   flex-direction: column;
@@ -62,12 +165,14 @@ width: 20vw;
 .footer h2{
   margin-top: 1em;
 }
+
+/* LIBRARY component */
 #libSerch{ 
   align-items: center;
   position: sticky;
-  top:5vh;
+  top:3vh;
   background-color:rgb(144 183 11 / 83%) ;
- padding-bottom: 1em ;
+ padding-bottom: 0.5em ;
  z-index: 1;
 }
 #linkdveri{
@@ -80,62 +185,7 @@ width: 20vw;
 #libSerch button{
   height: 2em;
 }
-.form{
- 
-  background-image: url(../src/pictures/images\ \(4\).jfif);
-  background-size: 100% 100%;
-   display: flex;
-   flex-direction: column;
-  justify-content: space-between; 
-  width: 25vw;
-  padding-left: 5%;
-}
-.guest  {
-  font-size: smaller;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 65%;
-  height:50%;
-  transform: rotate(-2deg);
-}
-.guest button{
-  margin-left:5% ;
-  width: 40%;
-  font-size: smaller;
-}
-/* .guest p{
-  
-} */
-.user{
-  margin-top:1.5vh ;
-  font-size: smaller;
-  display: flex;
-  justify-content: flex-end;
-  
-  width: 65%;
-  transform: rotate(-2deg);
-}
-.user img{
-  margin: 0;
-  width: 70%;
-}
-.user div {
-  text-align: center;
-  margin-top: 3vh;
-  height: 50%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-}
-.user div button{
-  
-  font-size: smaller;
-  width: 40%;
-}
+
 .page{
   padding: 2vw 2vw 40vw;
   align-items: flex-end;
@@ -148,6 +198,10 @@ width: 20vw;
   background-size: 100% 100%;
   background-position: top;
 }
+.page a{
+  font-family: 'Franklin Gothic Medium';
+  text-decoration: none;
+}
 
 .cell{
  
@@ -155,9 +209,8 @@ width: 20vw;
   display: flex;
   justify-content: space-around;
   height: 20vw;
-  border: 1px solid rgb(212, 26, 26);
   border-radius: 20px;
-  background-image: url(../src/pictures/big\ book-cort.jpg);
+  background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-big-book.png);
   background-size:100% 100%;
 }
 .right{
@@ -183,9 +236,11 @@ width: 20vw;
 .toBook{
   font-style:normal ;
   color: rgb(92, 6, 252);
-  
 }
+/* END LIBRARY */
 
+
+/* SEARCH component */
 .bigPage{
   padding: 7vw 1vw 18vw;
   align-items: flex-end;
@@ -226,24 +281,208 @@ width: 20vw;
   color: black;
   font-style: normal;
 }
+/* END OF SEARCH */
+
+
+/* HOME component */
 .tops{
   background-image: url(../src/pictures/shelfes.jpg);
-  background-size: 100% 100%;
+  background-size:100% 100% ;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 75vw;
+  padding-left: 6vw;
+  padding-right: 6vw;
+}
+.tops a{
+  text-decoration: none;
+}
+.title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: large;
+  color:rgb(150, 69, 3);
+  padding-top: 1.2vw;
+  height: 4vw;
+  background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-title.png);
+  background-size: 100% 100%;
 }
 .rate {
- 
+  padding-top: 1vw;
+  height: 75vh;
+  width: 95%;
+}
+.recomend {
+  padding-top: 1vw;
   height: 75vh;
   width: 100%;
 }
 .new {
   height: 75vh;
+  padding-top: 1vw;
+  width: 100%;
+}
+.rate .cellH{
+  margin-bottom: 0.5vw;
+  display: flex;
+  justify-content:left;
+  margin-left: 1vw;
+  background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-p2rdNzwSm3Yodh.png);
+  background-size: 100% 100%;
+  height: 12vw;
+}
+.recomend .cellH{
+  display: flex;
+  justify-content: left;
+  margin-bottom: 0.5vw;
+  background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-VSx89Zmmr9KisCk2.png);
+  background-size: 100% 100%;
+  height: 12.1vw;
+}
+.new .cellH{
  
+  display: flex;
+  justify-content: left;
+  background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-tbSblE48DRfIoa3.png);
+  background-size: 100% 93%;
+  height: 12vw;
+  margin-top: 0.55vw;
+}
+
+.rate .leftH{
+  text-align: right;
+  width: 27%;
+  padding-top: 10%;
+  height:100% ;
+}
+.recomend .leftH{
+  text-align: right;
+  width: 30%;
+  padding-top: 8%;
+  height:100% ;
+  padding-bottom: 1vw;
+}
+.new .leftH{
+  text-align: right;
+  width: 30%;
+padding-top: 6%;
+height:100% ;
+}
+.rate .coverH{
+  height: 75%;
+}
+.recomend .coverH{
+  height: 85%;
+}
+.new .coverH{
+  height: 75%;
+}
+.rate .rightH{
+  text-align: left;
+  padding-left: 0.3em;
+  padding-top: 9%;
+  width: 67%;
+height: 70%;
+}
+.recomend .rightH{
+ 
+  text-align: left;
+  padding-left: 0.3em;
+  padding-top: 8%;
+  width: 60%;
+height: 70%;
+}
+.new .rightH{
+  text-align: left;
+  padding-left: 0.3em;
+  padding-top: 6%;
+  width: 60%;
+height: 70%;
+}
+#author{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1em;
+  color: black;
+}
+#title{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 1em;
+  color:rgb(192, 79, 3)
+}
+/* END OF HOME */
+
+
+/* LIBRO component */
+#Libro{
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  min-height: 44vw;
+  background-image: url(../src/pictures/perfect-book.jpg);
+  background-size:100% 102%;
+  padding-bottom: 6%;
+}
+#bigCover{
+    height: fit-content;
+    padding-top: 15vh;
+    padding-left: 4%;
+    padding-right: 6%;
+    width: 49%;
+}
+#bigFoto{
+  height: 55%;
+  width: 80%;
+  padding-left: 35%;
+}
+#bigFoto img{
   width: 100%;
 }
-.recomend {
-  height: 75vh;
-  
-  width: 100%;
+#dis{
+  text-align: center;
+  margin-top: 1vh;
+  margin-left: 15%;
+width: 85%;
 }
+#fullDesc{
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  text-align: left;
+  padding: 4vh 0px;
+width: 38%;
+}
+span{
+
+  font-family: 'Gill Sans';
+  color:rgb(150, 69, 3)
+}
+/* END OF LIBRO */
+
+
+/* REGISTRY component */
+#reg{
+  height: 77vh;
+  background-size: 100% 100%;
+  background-image: url(../src/pictures/l5kdnwocgg9slmfyppuj1e2jypsx8eco9xyh663k4ocauvyfsz1hpfcj7mkg9vkf-.jpg);
+}
+
+.form_container{
+  background-image:url(../src/pictures/imgonline-com-ua-Transparent-backgr-diary.png) ;
+  background-size: 100% 100%;
+  position: absolute;
+  margin:20vh 30vw 0vw;
+  padding: 5.5% 2% 5% 22%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40vw;
+  height: 30vw;
+  min-height:280px ;
+  z-index: 1;
+}
+.form_container input{
+  height: 2em;
+} 
+.form_container button{
+  height: 2em;
+} 

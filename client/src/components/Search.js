@@ -4,7 +4,6 @@ import axios from "axios";
 import {Link,useNavigate,useParams} from "react-router-dom"
 import { useRecoilState } from 'recoil'
 import { titleState, authorState,idState } from '../State.js'
-// import dveri from '../public/log_logout_door_1563.png'
 import doorPic from '../pictures/log_logout_door_1563.png'
 export default function List(){
     const [tit,setTit]=useState("")
@@ -18,7 +17,7 @@ let params=useParams()
 
    const searchFunc = () => {
      axios 
-        .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&langRestrict=en&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+        .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
         .then(otvet=>{
             console.log(otvet)
             setPage([...otvet.data.items])

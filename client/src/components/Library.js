@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react'
 import {Link,useNavigate} from "react-router-dom"
 import { useRecoilState } from 'recoil'
-import { titleState, authorState,idState } from '../State.js'
+import { titleState,idState } from '../State.js'
 
 import axios from 'axios'
 
@@ -14,6 +14,7 @@ const [id,setId]=useRecoilState(idState)
 
 const findList=(arg)=>{
     axios 
+    
          .get(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
          .then(otvet=>{
            console.log(otvet)

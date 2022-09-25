@@ -28,21 +28,19 @@ useEffect(()=>{
 findList()},[]
 )
 
-  const printList=()=>{
+  const printList=( )=>{
     return page.map((book,i)=>{
                 return <div key={i}>
       <Link to={`/Libro/${book.id}`} className="toBook" >
       <div className="cellH">
-         <div className="leftH">
-         <p className="discr">Author:</p>  
-         <p>{`${book.volumeInfo.authors}`}</p>
-         <p className="discr">Title:</p>
-         <p>{`${book.volumeInfo.title}`}</p>
-         <p className="discr">Category:</p>
-         <p>{`${book.volumeInfo.categories}`}</p>
-        </div>
-        <div className="rightH">
+        <div className="leftH">
         <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover" className="coverH"/>
+        </div>
+         <div className="rightH">
+         
+         <p id="author">{`${book.volumeInfo.authors}`}</p>
+      
+         <p id="title">{`${book.volumeInfo.title}`}</p>
         </div>
       </div>
     </Link>
@@ -57,19 +55,19 @@ findList()},[]
     <div className="PAGE">
               <section  className= "tops" >
               <div className="rate">
-                <p>top5 rated</p>
+                <p className="title">TOP RATED</p>
                 <section className="homePage">
                 {printList()}
                 </section>
               </div>
               <div className="recomend">
-                <p>top5 relevance</p>
+                <p className="title">TOP RELEVANCE</p>
                 <section className="homePage">
                 {printList()}
                 </section>
               </div>
               <div className="new">
-                <p>newest 5</p>
+                <p className="title">FIVE NEWEST </p>
                 <section className="homePage">
                 {printList()}
                 </section>
