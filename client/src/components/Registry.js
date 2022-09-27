@@ -21,9 +21,9 @@ const handleChange=(e) => {
 const handleSubmit = (e) => {
     e.preventDefault();
     
-        if(form.password===form.password2)
+        if(form.password===form.password2){
         axios
-        .post(`http://localhost:4040/users/register`, {
+        .post(`http://localhost:4040/users/add`, {
             email: form.email,
             password: form.password,
             nickname: form.nickname}
@@ -41,10 +41,14 @@ const handleSubmit = (e) => {
         console.log(error);
     })
 }
+}
 
 
 return (
      <div id="reg">
+        <div id="message">
+            <p>{message}</p>
+        </div>
     <form onSubmit={handleSubmit} onChange={handleChange} className="form_container">
         <label>Email</label>
         <input placeholder='required' type="email" name="email" />
@@ -60,7 +64,6 @@ return (
 
         <button>register</button>
         <div className="message">
-            <h4>{message}</h4>
         </div>
     </form>
     </div>

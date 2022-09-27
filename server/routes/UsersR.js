@@ -8,7 +8,7 @@ const express = require('express'),
 
 
 router.post('/add',controller.add);
-
+router.post('/login',controller.login);
 router.get('/:nickName',controller.findOne);
 //   router.post('/delete',controller.delete);
 
