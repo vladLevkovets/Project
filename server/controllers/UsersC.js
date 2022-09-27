@@ -9,31 +9,28 @@ class UsersCons {
   async add(req, res) {
     let { nickname, password, email } = req.body;
     if (!email || !password || !nickname)
-      return res.json({
+       res.json({
         ok: false,
         message: "WRONG DATA PROVIDED FILL IN AND CHECK ALL FIELDS",
       });
     if (!validator.isEmail(email))
-      return res.json({
+       res.json({
         ok: false,
         message: "WRONG DATA PROVIDED FILL IN AND CHECK ALL FIELDS",
       });
     try {
+      const mail = await UsersM.findOne({ email }) 
       let ex = await UsersM.findOne({ nickname });
-      console.log(ex);
-      if (ex)
+      if (ex || mail)
         res.json({
           ok: false,
-          message: `WRONG DATA PROVIDED USER ${nickname} IS ALLREADY EXIST CHANGE NICKNAME`,
+          message: `WRONG DATA PROVIDED USER OR EMAIL IS ALLREADY EXIST `,
         });
-      console.log(nickname, password);
       const hash = await argon2.hash(password);
       const here = await UsersM.create({ nickname, password: hash, email });
-      const user = await UsersM.findOne({ nickname: nickname });
-      if (user) {
-        const token = jwt.sign({ nickname }, jwt_secret, { expiresIn: "1h" });
-        res.json({ ok: true, token, nickname, message: "all right" });
-      }
+      const token = jwt.sign({email}, jwt_secret, { expiresIn: "7d" });
+      res.json({ ok: true, token, nickname, message: "ALL RIGHT" });
+      
     } catch (error) {
       res.json({ error });
     }
@@ -41,29 +38,24 @@ class UsersCons {
 
   async login(req, res) {
     const { nickname, password } = req.body;
-    console.log(req.body);
     if (!nickname || !password)
-      res.json({ ok: false, message: "All field are required" });
+      res.send({ ok: false, message: "All field are required" });
     try {
       const user = await UsersM.findOne({ nickname });
-      console.log(user);
       if (!user) {
-        console.log("mimo");
-        res.json({ ok: false, message: "invalid data provided" });
+        res.send({ ok: false, message: "invalid data provided" });
       }
       const match = await argon2.verify(user.password, password);
-      console.log(match);
       if (match) {
         // once user is verified and confirmed we send back the token to keep in localStorage in the client and in this token we can add some data -- payload -- to retrieve from the token in the client and see, for example, which user is logged in exactly. The payload would be the first argument in .sign() method. In the following example we are sending an object with key userEmail and the value of email coming from the "user" found in line 47
-        const token = jwt.sign(nickname, jwt_secret, { expiresIn: "365d" }); //{expiresIn:'365d'}
-        console.log(token);
+        const token = jwt.sign({nickname}, jwt_secret, { expiresIn: "7d" }); //{expiresIn:'365d'}
         // after we send the payload to the client you can see how to get it in the client's Login component inside handleSubmit function
         res.json({ ok: true, message: "welcome back", token, nickname });
       } else {
-        res.json({ ok: false, message: "invalid data provided" });
+        res.send({ ok: false, message: "invalid data provided" });
       }
     } catch (error) {
-      res.json({ ok: false, error });
+      res.send({ ok: false, error });
     }
   }
 
@@ -71,6 +63,7 @@ class UsersCons {
     console.log(req.headers.authorization);
     const token = req.headers.authorization;
     jwt.verify(token, jwt_secret, (err, succ) => {
+        console.log(token, jwt_secret)
       err
         ? res.json({ ok: false, message: "something went wrong" })
         : res.json({ ok: true, succ });

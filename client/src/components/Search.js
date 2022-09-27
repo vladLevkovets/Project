@@ -58,11 +58,11 @@ const printList=()=>{
     <div className="cellS">
       <div className="leftS">
       <p className="discr">Author:</p>  
-      <p>{`${book.volumeInfo.authors}`}</p>
+      <p className="aut">{`${book.volumeInfo.authors}`}</p>
       <p className="discr">Title:</p>
-      <p>{`${book.volumeInfo.title}`}</p>
+      <p className="name">{`${book.volumeInfo.title}`}</p>
       <p className="discr">Category:</p>
-      <p>{`${book.volumeInfo.categories}`}</p>
+      <p className="zanr">{`${book.volumeInfo.categories}`}</p>
     </div>
       <div className="rightS">
       <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover" className="coverS"/>

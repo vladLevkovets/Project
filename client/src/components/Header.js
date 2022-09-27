@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import * as jose from "jose";
 import axios from "axios";
 import foto from "../pictures/wellcome.jfif";
-import ava from "../pictures/openblue.jfif";
 
-export default function Header({ isLoggedIn }) {
+
+export default function Header({ isLoggedIn,setIsLoggedIn }) {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const [toLog, setToLog] = useState("closed");
@@ -14,7 +14,7 @@ export default function Header({ isLoggedIn }) {
     nickname: "",
     password: "",
   });
-
+  console.log("header",isLoggedIn)
   const [token, setToken] = useState(JSON.parse(localStorage.getItem("token")));
 
   const handleChange = (e) => {
@@ -32,7 +32,7 @@ export default function Header({ isLoggedIn }) {
   };
   const LOGIN = (e) => {
     e.preventDefault();
-    console.log(form);
+    console.log(e.target);
     axios
       .post(`http://localhost:4040/users/login`, {
         nickname: form.nickname,
@@ -47,13 +47,17 @@ export default function Header({ isLoggedIn }) {
           // and now we now which user is logged in in the client so we can manipulate it as we want, like fetching data for it or we can pass the user role -- admin or not -- and act accordingly, etc...
           console.log(
             "Email extracted from the JWT token after login: ",
-            decodedToken.userEmail
+            decodedToken.email
           );
 
           localStorage.setItem("token", JSON.stringify(res.data.token));
-          // setIsLoggedIn(true);;
-
-          navigate("/");
+          closeScroll()
+          
+          setTimeout(() => {
+          setMessage("") 
+          setIsLoggedIn(true)            
+          navigate("/")},800);
+          
         }
       })
       .catch((error) => {
@@ -62,21 +66,25 @@ export default function Header({ isLoggedIn }) {
   };
 
   useEffect(() => {
-    console.log(isLoggedIn);
+    setValues({ ...form, nickname: "", password: "" })
+    console.log(isLoggedIn)
   }, []);
 
   return (
     <div className="head">
-      {isLoggedIn === false ? (
+      {!isLoggedIn 
+      ? (
         <div id="logobord">
           <img src={logo} alt="logo" className="logo" />
         </div>
-      ) : (
+      ) 
+      : (
         <div id="logobord">
           <div className="ava">
             <button
               onClick={() => {
                 localStorage.removeItem("token");
+                setIsLoggedIn(false)
                 navigate("/");
               }}
             >
@@ -85,8 +93,10 @@ export default function Header({ isLoggedIn }) {
           </div>
         </div>
       )}
+      {!isLoggedIn 
+      ? (
       <div className="move">
-        <h1>Free library </h1>
+        <h1 id="littleH">Free library </h1>
         <div className="scroll">
           <div className={toLog}>
             <button id="b2" onClick={closeScroll}>
@@ -94,14 +104,20 @@ export default function Header({ isLoggedIn }) {
             </button>
             <form onSubmit={LOGIN} onChange={handleChange} id="scrollIn">
               <input placeholder="nickname" name="nickname" />
-              <input type="password" name="password" placeholder="password" />
+              <input type="password" name="password" placeholder="password"  />
               <button id="b1">Login</button>
               <p>{message}</p>
             </form>
           </div>
         </div>
-      </div>
-      {isLoggedIn === false ? (
+      </div>)
+      :(
+      <div className="move">
+      <h1 id="bigH">Free library </h1>
+      </div>)}
+
+      {!isLoggedIn 
+      ? (
         <div className="form">
           <div className="user">
             <p>Enter the temple of wisdom</p>
@@ -112,7 +128,8 @@ export default function Header({ isLoggedIn }) {
             <button onClick={handleClick}>Registry</button>
           </div>
         </div>
-      ) : (
+      ) 
+      : (
         <div className="foto">
           <img src={foto} />
         </div>

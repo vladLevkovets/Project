@@ -8,10 +8,10 @@ export default function Home() {
 
 const [page,setPage]=useState([])
 
-const findList=(arg)=>{
+const findList=()=>{
 
     axios 
-         .get(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=5&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+         .get(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&printType=books&maxResults=5&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
          .then(otvet=>{
            console.log(otvet)
              setPage([...otvet.data.items])

@@ -12,19 +12,27 @@ const navigate = useNavigate()
 const [page,setPage]=useState([])
 const [id,setId]=useRecoilState(idState)
 
-const findList=(arg)=>{
-    axios 
+const findList=()=>{
+  console.log(JSON.parse(localStorage.getItem(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)))
+    let url=`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`
+    let search=JSON.parse(localStorage.getItem(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`))
+    console.log(search)
+    if (search!==null){
+      setPage([...search])
+    }else{
     
-         .get(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+    axios     
+         .get(url)
          .then(otvet=>{
            console.log(otvet)
            setPage([...otvet.data.items])
+           localStorage.setItem(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`,JSON.stringify(otvet.data.items))
           
        })
        .catch(error=>{
            console.log(error)
        })
-                
+      }            
 }
 
 
@@ -60,9 +68,9 @@ const printList=()=>{
       <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover" className="cover"/>
       </div>
       <div className="right">
-      <p>{`${book.volumeInfo.authors}`}</p>
-      <p>{`${book.volumeInfo.title}`}</p>
-      <p>{`${book.volumeInfo.categories}`}</p>
+      <p className="aut">{`${book.volumeInfo.authors}`}</p>
+      <p className="name">{`${book.volumeInfo.title}`}</p>
+      <p className="zanr">{`${book.volumeInfo.categories}`}</p>
     </div>
     </div>
     </Link>

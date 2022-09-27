@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Registry = () => {
+const Registry = ({setIsLoggedIn}) => {
   const [form, setValues] = useState({
     email: "",
     password: "",
@@ -32,8 +32,9 @@ const Registry = () => {
           console.log(res);
           if (res.data.ok) {
             localStorage.setItem("token", JSON.stringify(res.data.token));
-
+            
             setTimeout(() => {
+              setIsLoggedIn(true)
               navigate("/");
             }, 2000);
           }

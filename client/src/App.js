@@ -20,12 +20,13 @@ export default function App() {
     () => {
       
       const verify_token = async () => {
+  
         try {
           if (!token) {
             setIsLoggedIn(false)
           }else {
           axios.defaults.headers.common['Authorization'] = token;
-          const response = await axios.post(`${URL}/users/verify_token`);
+          const response = await axios.post(`http://localhost:4040/users/verify_token`);
           console.log(response)
           return response.data.ok ? login(token) : logout();
           }
@@ -56,13 +57,13 @@ const login = (token) => {
       
     <Router>
        <div className='Main'>
-       <Header isLoggedIn={isLoggedIn}/> 
+       <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/> 
       <Nav className="nav"/>
         <Routes>
             <Route path="/" element={<Home />}/> 
             <Route path="/Library" element={<Library/>}/>
-            <Route path="/Registry" element={<Registry/>}/> 
-            <Route path="/Libro/:id" element={<Libro/>}/>
+            <Route path="/Registry" element={<Registry setIsLoggedIn={setIsLoggedIn}/>}/> 
+            <Route path="/Libro/:id" element={<Libro isLoggedIn={isLoggedIn}/>}/>
             <Route path="/Search/:title" element={<Search/>}/>
             
           
@@ -70,8 +71,9 @@ const login = (token) => {
         
         
         </Routes>
-        </div>
         <Footer isLoggedIn={isLoggedIn}/>
+        </div>
+        
     </Router>
     
     </div>

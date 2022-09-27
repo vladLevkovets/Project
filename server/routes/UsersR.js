@@ -9,6 +9,7 @@ const express = require('express'),
 
 router.post('/add',controller.add);
 router.post('/login',controller.login);
+router.post('/verify_token',controller.verify_token);
 router.get('/:nickName',controller.findOne);
 //   router.post('/delete',controller.delete);
 
