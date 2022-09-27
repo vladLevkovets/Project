@@ -139,7 +139,7 @@ width: 15vw;
     justify-content: center; 
     width: 25vw;
     height: 20vh;
-    padding-left: 4%;
+    padding-left: 5%;
     padding-bottom: 5vh;
     padding-top: 3vh;
   }
@@ -168,6 +168,7 @@ width: 15vw;
     justify-content: flex-end;
     align-items: center;
     font-size: smaller;
+    
   }
 .user button{
     
