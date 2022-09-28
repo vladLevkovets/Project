@@ -19,10 +19,10 @@ let params=useParams()
 
 
    const searchFunc = () => {
-    let all=399 
+    let all=200
     let toLocal=[]
     
-    let url=`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`
+    let url=`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`
     console.log(url)
     console.log(JSON.parse(localStorage.getItem(`${url}`)))
       let books=JSON.parse(localStorage.getItem(`${url}`))
@@ -31,22 +31,24 @@ let params=useParams()
         setPage([...books])
       }else{   
     
-        for (let i=0;i<=all;i+=40){
+        for (let i=0;i<all;i+=40){
      axios
-          .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&startIndex=${i}&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+          .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&startIndex=${i}&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
           .then(res=>{
             console.log(res)
-            setPage([...page,...res.data.items])
+            
             toLocal.push(...res.data.items)
-            localStorage.setItem(url,JSON.stringify(toLocal));  
+            localStorage.setItem(url,JSON.stringify(toLocal));
+            setPage([...toLocal])
             })
           .catch(error=>{
                 console.log(error)
             })
         }console.log(toLocal)
           
-
     } 
+
+    
   } 
 
 useEffect(() => {
@@ -68,7 +70,7 @@ const handleChange=(e)=>{
   }
 
   const search=(e)=>{
-    e.preventDefault()
+    // e.preventDefault()
   setTitle(tit)
   navigate(`/Search/${tit}`)
 } 

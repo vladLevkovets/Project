@@ -39,23 +39,23 @@ class UsersCons {
   async login(req, res) {
     const { nickname, password } = req.body;
     if (!nickname || !password)
-      res.send({ ok: false, message: "All field are required" });
+     return res.send({ ok: false, message: "All field are required" });
     try {
       const user = await UsersM.findOne({ nickname });
       if (!user) {
-        res.send({ ok: false, message: "invalid data provided" });
+       return res.send({ ok: false, message: "invalid data provided" });
       }
       const match = await argon2.verify(user.password, password);
       if (match) {
         // once user is verified and confirmed we send back the token to keep in localStorage in the client and in this token we can add some data -- payload -- to retrieve from the token in the client and see, for example, which user is logged in exactly. The payload would be the first argument in .sign() method. In the following example we are sending an object with key userEmail and the value of email coming from the "user" found in line 47
         const token = jwt.sign({nickname}, jwt_secret, { expiresIn: "7d" }); //{expiresIn:'365d'}
         // after we send the payload to the client you can see how to get it in the client's Login component inside handleSubmit function
-        res.json({ ok: true, message: "welcome back", token, nickname });
+       return res.json({ ok: true, message: "welcome back", token, nickname });
       } else {
-        res.send({ ok: false, message: "invalid data provided" });
+       return res.send({ ok: false, message: "invalid data provided" });
       }
     } catch (error) {
-      res.send({ ok: false, error });
+     return res.send({ ok: false, error });
     }
   }
 

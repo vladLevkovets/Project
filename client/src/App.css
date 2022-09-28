@@ -268,8 +268,8 @@ width: 16%;
   grid-template-columns: 1fr 1fr 1fr; 
   grid-template-rows: repeat(5,24vw);
   gap: 4vw;
-  background-image: url(../src/pictures/rainbow.jpg);
-  background-size: 100% 100%;
+  background-image: url(../src/pictures/polki-library.jpg);
+  background-size: contain;
   background-position: top;
 }
 .page a{
@@ -339,27 +339,26 @@ width: 16%;
 
 /* SEARCH component */
 .bigPage{
-  padding: 7vw 1vw 18vw;
-  align-items: flex-end;
-  
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr ; 
-  grid-template-rows: repeat( 9 , 27vw);
-  gap: 2vw;
-  background-image: url(../src/pictures/uQearp.jpg);
-  background-size: 100% 100%;
-  background-position: top;
-}
-.cellS{
-   
+    align-items: center;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    height: 20vw;
-    border-radius: 20px;
-    background-image: url(../src/pictures/old-book-clipart-design-illustration-free-png.webp);
-    background-size:100% 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto, 24vw);
+    gap: 2vh;
+    background-image: url(../src/pictures/polki-search-thin.jpg);
+    background-size: 100%;
+    background-position: top;
+    height: max-content;
+}
+.cellS{  
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  height: 24vw;
+  border-radius: 20px;
+  background-image: url(../src/pictures/old-book-clipart-design-illustration-free-png.webp);
+  background-size: 100% 100%;
+  margin-top: 1vh;
 }
 .leftS{
   padding-top: 0.5vw;
@@ -368,12 +367,13 @@ width: 16%;
 }
  .rightS{
   text-align: left;
-  padding-top: 1vw;
- 
-  width: 50%;
+    padding-top: 0vw;
+    width: 49%;
+    height: 86%;
 }
 .coverS{
-  width:93%;
+  width: 87%;
+  height: 100%;
 }
 .discr{
   color: black;
