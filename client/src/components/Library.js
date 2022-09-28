@@ -13,9 +13,9 @@ const [page,setPage]=useState([])
 const [id,setId]=useRecoilState(idState)
 
 const findList=()=>{
-  console.log(JSON.parse(localStorage.getItem(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)))
-    let url=`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`
-    let search=JSON.parse(localStorage.getItem(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`))
+  let url=`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`
+  console.log(JSON.parse(localStorage.getItem(url)))
+    let search=JSON.parse(localStorage.getItem(url))
     console.log(search)
     if (search!==null){
       setPage([...search])
@@ -26,13 +26,14 @@ const findList=()=>{
          .then(otvet=>{
            console.log(otvet)
            setPage([...otvet.data.items])
-           localStorage.setItem(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&langRestrict=en&printType=books&maxResults=15&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`,JSON.stringify(otvet.data.items))
+           localStorage.setItem(url, JSON.stringify(otvet.data.items))
           
        })
        .catch(error=>{
            console.log(error)
        })
-      }            
+      }
+                  
 }
 
 
@@ -68,7 +69,7 @@ const printList=()=>{
       <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover" className="cover"/>
       </div>
       <div className="right">
-      <p className="aut">{`${book.volumeInfo.authors}`}</p>
+      <p className="aut">{`${book.volumeInfo.authors.join(', ')}`}</p>
       <p className="name">{`${book.volumeInfo.title}`}</p>
       <p className="zanr">{`${book.volumeInfo.categories}`}</p>
     </div>
@@ -84,9 +85,7 @@ return (
     
      <div>
         <div>
-         {/* <Link to="/Library"><img src="./log_logout_door_1563.png" alt="back" className="dveri"/></Link> */}
          
-         {/* {alfabet()} */}
          </div>
           <form onSubmit={search} id="libSerch">
            <input onChange={handleChange}/>

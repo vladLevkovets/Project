@@ -22,9 +22,9 @@ export default  function Nav () {
                 {/* <NavLink> */}
                     <p>Categories</p>
                     {/* </NavLink> */}
-                {/* <NavLink> */}
-                    <p>Comments</p>
-                    {/* </NavLink> */}
+                <NavLink>
+                    <p>Profile</p>
+                    </NavLink>
             </div>
 
 

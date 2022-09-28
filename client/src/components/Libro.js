@@ -20,7 +20,7 @@ const BookViewer = () => {
     let params=useParams()
     
     useEffect(()=>{
-      console.log(params.id)
+      console.log(`${params.id}`)
     axios 
       .get(`https://www.googleapis.com/books/v1/volumes?q="${params.id}"&printType=books&maxResults=40&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
       .then(otvet=>{

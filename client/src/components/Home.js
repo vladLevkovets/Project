@@ -9,18 +9,24 @@ export default function Home() {
 const [page,setPage]=useState([])
 
 const findList=()=>{
-
+  let url=`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&printType=books&maxResults=5&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`
+  console.log(JSON.parse(localStorage.getItem(url)))
+    let search=JSON.parse(localStorage.getItem(url))
+    console.log(search)
+    if (search!==null){
+      setPage([...search])
+    }else{
     axios 
          .get(`https://www.googleapis.com/books/v1/volumes?q=orderBy=newest&printType=books&maxResults=5&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
          .then(otvet=>{
            console.log(otvet)
              setPage([...otvet.data.items])
-        
+            
           })
        .catch(error=>{
            console.log(error)
        })
-                
+      }            
 }
 
 

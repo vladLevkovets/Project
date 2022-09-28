@@ -26,12 +26,12 @@ padding: 0;
   left: 0px;
   height: 20vh;
 background-color:#0bcdf9 ;
-width: 15vw;
+width: 16%;
 }
 .ava{
   padding-top: 16vh;
   height: 20vh;
-  width: 15vw;
+  width: 100%;
   border-radius: 0px 130px 0px 0px ;
   background-image: url(../src/pictures/openblue.jfif);
   background-size: 100% 100%;
@@ -59,7 +59,7 @@ width: 15vw;
   }
 
 .move{
-  width: 70vw;
+  width: 70%;
   display: flex;
   margin-left:15vw ;
 }
@@ -74,7 +74,7 @@ width: 15vw;
   position: relative;
   padding-top: 3vh;
   height: 100%;
-  width: 15vw;
+  width: 22%;
   text-align: left;
   background-color:#0bcdf9 ;
   
@@ -86,10 +86,13 @@ width: 15vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 105%;
+  width: 10%;
   height: 13vh;
   margin-left:15vw ;
   transition: margin 0.5s;
+}
+.closed input{
+  width: 1vw;
 }
 .open{
   padding: 1vh 2vw ;
@@ -142,7 +145,7 @@ width: 15vw;
      display: flex;
      flex-direction: column;
     justify-content: center; 
-    width: 25vw;
+    width: 25%;
     height: 20vh;
     padding-left: 5%;
     padding-bottom: 5vh;
@@ -197,7 +200,11 @@ width: 15vw;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 3vh;
+  height: 5vh;
+}
+#nav a{
+  text-decoration: none;
+  color: aliceblue;
 }
 
 
@@ -229,22 +236,28 @@ width: 15vw;
 
 /* LIBRARY component */
 #libSerch{ 
-  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1vh;
+  height:4vh;
+  align-items:flex-start;
   position: sticky;
-  top:3vh;
+  top:5vh;
   background-color:rgb(144 183 11 / 83%) ;
- padding-bottom: 0.5em ;
  z-index: 1;
 }
 #linkdveri{
+  height: 60%;
   width:20vw;
 }
 #libSerch input{
-  height: 2em;
+  display: inline-block;
+  height: 3vh;
   width: 60vw;
 }
 #libSerch button{
-  height: 2em;
+  display: inline-block;
+  height: 3vh;
 }
 
 .page{
@@ -265,7 +278,7 @@ width: 15vw;
 }
 
 .cell{
-  padding-left: 8%;
+  padding-left: 12%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -276,29 +289,31 @@ width: 15vw;
 }
 .right{
   text-align: left;
-    padding-top: 8vh;
+    padding-top: 18%;
     padding-right: 10%;
-    padding-left: 1vw;
     transform: rotate3d(39,-29,7,49deg);
     width: 50%;
 }
 .aut{
-    overflow: hidden;
+  word-break:break-all;
+  overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
-.name{
+.name{ 
+  word-break: break-all;
   overflow: hidden;
-  text-overflow: ellipsis;
+    text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 .zanr{
+  word-break:break-all;
   overflow: hidden;
-  text-overflow: ellipsis;
+    text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -308,12 +323,12 @@ width: 15vw;
   height: 100%;
 }
 .left{
-  height: 30vh;
-    padding-bottom: 19%;
+  height: 77%;
+    padding-bottom: 6%;
     text-align: right;
     transform: rotate3d(53,-27,84,31deg);
     width: 11vw;
-    padding-top: 4vh;
+    padding-top: 10%;
 }
 .toBook{
   font-style:normal ;
@@ -326,13 +341,14 @@ width: 15vw;
 .bigPage{
   padding: 7vw 1vw 18vw;
   align-items: flex-end;
+  
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr ; 
-  grid-template-rows: repeat( 9 ,27vw);
+  grid-template-rows: repeat( 9 , 27vw);
   gap: 2vw;
   background-image: url(../src/pictures/uQearp.jpg);
-  background-size: 50% 100%;
+  background-size: 100% 100%;
   background-position: top;
 }
 .cellS{
@@ -380,9 +396,9 @@ width: 15vw;
   text-decoration: none;
 }
 .title {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Gill Sans';
   font-size: large;
-  color:rgb(150, 69, 3);
+  color:rgb(133, 61, 2);
   padding-top: 1.2vw;
   height: 4vw;
   background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-title.png);
@@ -504,13 +520,18 @@ height: 70%;
   padding-bottom: 6%;
 }
 #bigCover{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
     height: fit-content;
-    padding-top: 15vh;
+    padding-top: 10%;
     padding-left: 4%;
     padding-right: 6%;
+    padding-bottom: 5%;
     width: 49%;
 }
 #bigFoto{
+  margin-top: 8%;
   height: 55%;
   width: 80%;
   padding-left: 35%;
@@ -519,6 +540,7 @@ height: 70%;
   width: 100%;
 }
 #dis{
+  
   text-align: center;
   margin-top: 1vh;
   margin-left: 15%;
@@ -530,7 +552,7 @@ width: 85%;
   flex-direction: column;
   justify-content:flex-start;
   text-align: left;
-  padding: 4vh 0px;
+  padding: 4% 0px;
 width: 38%;
 }
 span{

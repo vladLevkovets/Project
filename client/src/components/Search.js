@@ -5,8 +5,11 @@ import {Link,useNavigate,useParams} from "react-router-dom"
 import { useRecoilState } from 'recoil'
 import { titleState, authorState,idState } from '../State.js'
 import doorPic from '../pictures/log_logout_door_1563.png'
+
+
 export default function List(){
-    const [tit,setTit]=useState("")
+
+const [tit,setTit]=useState("")
 const [title,setTitle]=useRecoilState(titleState)  
 const navigate = useNavigate()
 const [page,setPage]=useState([])
@@ -16,18 +19,36 @@ let params=useParams()
 
 
    const searchFunc = () => {
-     axios 
-        .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
-        .then(otvet=>{
-            console.log(otvet)
-            setPage([...otvet.data.items])
-            
+    let all=399 
+    let toLocal=[]
+    
+    let url=`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`
+    console.log(url)
+    console.log(JSON.parse(localStorage.getItem(`${url}`)))
+      let books=JSON.parse(localStorage.getItem(`${url}`))
+      console.log(books)
+      if (books!==null){
+        setPage([...books])
+      }else{   
+    
+        for (let i=0;i<=all;i+=40){
+     axios
+          .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&startIndex=${i}&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+          .then(res=>{
+            console.log(res)
+            setPage([...page,...res.data.items])
+            toLocal.push(...res.data.items)
+            localStorage.setItem(url,JSON.stringify(toLocal));  
             })
-        .catch(error=>{
+          .catch(error=>{
                 console.log(error)
             })
+        }console.log(toLocal)
+          
+
     } 
-   
+  } 
+
 useEffect(() => {
     searchFunc()
 },[params])
@@ -54,7 +75,7 @@ const handleChange=(e)=>{
 const printList=()=>{
     if (page.length > 0) {return page.map((book,i)=>{
                 return <div key={i}>
-                <Link to={`/Libro/${book.id}`} className="toBook" >
+                <Link to={`/Libro/${book.id}+inauthor:${book.volumeInfo.title}`} className="toBook" >
     <div className="cellS">
       <div className="leftS">
       <p className="discr">Author:</p>  
