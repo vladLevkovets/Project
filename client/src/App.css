@@ -339,28 +339,142 @@ width: 16%;
 
 /* SEARCH component */
 .bigPage{
-  padding: 7vw 1vw 18vw;
-  align-items: flex-end;
-  
-  width: 100%;
+  padding: 6vw 1vw 4vw;
+  height: max-content;
+  width:100%;
+  align-items: flex-start;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr ; 
-  grid-template-rows: repeat( 9 , 27vw);
-  gap: 2vw;
-  background-image: url(../src/pictures/uQearp.jpg);
-  background-size: 100% 100%;
-  background-position: top;
+  grid-template-columns: 23% 23% 23% 23%;
+  grid-column-gap: 2vw;
+  grid-auto-rows: 24.35vw;
+  background-image: url(../src/pictures/shelf.jpg);
+  background-size: 100% 24.35vw;
+    background-position: top;
+    background-repeat: repeat-y;
 }
+
 .cellS{
-   
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    height: 20vw;
-    border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  height: 19vw;
+  border-radius: 20px;
     background-image: url(../src/pictures/old-book-clipart-design-illustration-free-png.webp);
     background-size:100% 100%;
 }
+
+  .bigPage>div{
+    position: relative;
+    
+  }
+
+.bigPage>div:nth-child(1n+4) .grow:hover{
+  position: absolute;
+  left:0;
+  top:-9vw;
+  background-image: url(../src/pictures/shelf.jpg);
+  background-size: 100% 100%;
+  height: 35vw;
+  width: 40vw;
+  z-index: 1;
+  border-radius: 50px;
+}
+
+.bigPage>div:nth-child(2n+4) .grow:hover{
+  position: absolute;
+  left: -9vw;
+  top:-9vw;
+  background-image: url(../src/pictures/shelf.jpg);
+  background-size: 100% 100%;
+  height: 35vw;
+  width: 40vw;
+  z-index: 1;
+  border-radius: 50px;
+}
+
+.bigPage>div:nth-child(3n+4) .grow:hover{
+  position: absolute;
+  left: -9vw;
+  top:-9vw;
+  background-image: url(../src/pictures/shelf.jpg);
+  background-size: 100% 100%;
+  height: 35vw;
+  width: 40vw;
+  z-index: 1;
+  border-radius: 50px;
+}
+
+.bigPage>div:nth-child(4n+4) .grow:hover{
+  position: absolute;
+  left: -15vw;
+  top:-9vw;
+  background-image: url(../src/pictures/shelf.jpg);
+  background-size: 100% 100%;
+  height: 35vw;
+  width: 40vw;
+  z-index: 1;
+  border-radius: 50px;
+}
+
+.bigPage>div:nth-child(1n+4) .cellS:hover{
+  position: absolute;
+  top:9vw;
+  right:5vw;
+  display: flex;
+  justify-content: space-between;
+  height: 25vw;
+  width:30vw;
+  border-radius: 20px;
+    background-image: url(../src/pictures/old-book-clipart-design-illustration-free-png.webp);
+    background-size:100% 100%;
+  transition: box-sizing, 0.5s;  
+  z-index: 2   ;
+}
+
+.bigPage>div:nth-child(2n+4) .cellS:hover{
+  position: absolute;
+  top:9vw;
+  left: 5vw;
+  display: flex;
+  justify-content: space-between;
+  height: 25vw;
+  width:30vw;
+  border-radius: 20px;
+    background-image: url(../src/pictures/old-book-clipart-design-illustration-free-png.webp);
+    background-size:100% 100%;
+  transition: box-sizing, 0.5s;  
+  z-index: 2   ;
+}
+
+.bigPage>div:nth-child(3n+4) .cellS:hover{
+  position: absolute;
+  top:9vw;
+  right:5vw;
+  display: flex;
+  justify-content: space-between;
+  height: 25vw;
+  width:30vw;
+  border-radius: 20px;
+    background-image: url(../src/pictures/old-book-clipart-design-illustration-free-png.webp);
+    background-size:100% 100%;
+  transition: box-sizing, 0.5s;  
+  z-index: 2   ;
+}
+ 
+.bigPage>div:nth-child(4n+4) .cellS:hover{
+  position: absolute;
+  top:9vw;
+  right:5vw;
+  display: flex;
+  justify-content: space-between;
+  height: 25vw;
+  width:30vw;
+  border-radius: 20px;
+    background-image: url(../src/pictures/old-book-clipart-design-illustration-free-png.webp);
+    background-size:100% 100%;
+  transition: box-sizing, 0.5s;  
+  z-index: 2   ;
+}
+
 .leftS{
   padding-top: 0.5vw;
   padding-left: 2vw;
@@ -368,13 +482,14 @@ width: 16%;
 }
  .rightS{
   text-align: left;
-  padding-top: 1vw;
  
   width: 50%;
 }
 .coverS{
-  width:93%;
+  height: 88%;
+  width: 93%;
 }
+
 .discr{
   color: black;
   font-style: normal;

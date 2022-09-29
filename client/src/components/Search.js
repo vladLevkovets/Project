@@ -97,8 +97,9 @@ const handleChange=(e)=>{
 } 
 const printList=()=>{
     if (page.length > 0) {return page.map((book,i)=>{
-                return <div key={i}>
+                return <div key={i} >
                 <Link to={`/Libro/${book.id}+inauthor:${book.volumeInfo.title}`} className="toBook" >
+     <div className="grow">
     <div className="cellS">
       <div className="leftS">
       <p className="discr">Author:</p>  
@@ -111,6 +112,7 @@ const printList=()=>{
       <div className="rightS">
       <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover" className="coverS"/>
       </div>
+    </div>
     </div>
     </Link>
                  </div>
