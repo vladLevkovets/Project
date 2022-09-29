@@ -15,14 +15,15 @@ const navigate = useNavigate()
 const [page,setPage]=useState([])
 const [id,setId]=useRecoilState(idState)
 let params=useParams()
+console.log("page state",page)
 
 
-
-   const searchFunc = () => {
-    let all=399 
-    let toLocal=[]
+   const searchFunc = async () => {
     
-    let url=`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`
+    let all=120 
+   
+    
+    let url=`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`
     console.log(url)
     console.log(JSON.parse(localStorage.getItem(`${url}`)))
       let books=JSON.parse(localStorage.getItem(`${url}`))
@@ -30,26 +31,48 @@ let params=useParams()
       if (books!==null){
         setPage([...books])
       }else{   
-    
-        for (let i=0;i<=all;i+=40){
-     axios
-          .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&startIndex=${i}&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
-          .then(res=>{
-            console.log(res)
-            setPage([...page,...res.data.items])
-            toLocal.push(...res.data.items)
-            localStorage.setItem(url,JSON.stringify(toLocal));  
-            })
-          .catch(error=>{
-                console.log(error)
-            })
-        }console.log(toLocal)
-          
+     let toLocal=[]
+    try{    
+    for (let i=0;i<all;i+=40){
+     const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&startIndex=${i}&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+     toLocal.push(...res.data.items)
 
     } 
-  } 
+    } catch(error) {
+      console.log(error);
+    }
+     localStorage.setItem(url,JSON.stringify(toLocal))
+     console.log("tolocal",toLocal)
+     setPage([...toLocal])
+    } 
+  }   
+     
+     
+     
+
+
+  //  axios
+  //    .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&startIndex=${i}&maxResults=32&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+  //    .then(=>{
+  //           console.log(res)
+  //           debugger
+  //           toLocal.push(...res.data.items)
+  //           localStorage.setItem(url,JSON.stringify(toLocal))
+  //           setPage([...page, ...toLocal])
+  //           })
+  //         catch(error=>{
+  //               console.log(error)
+  //           })
+  //       }
+  //       console.log("tolocal",toLocal)
+  //         debugger
+  //       // setPage([...toLocal])
+
+  //       console.log("page",page)
+    
 
 useEffect(() => {
+  
     searchFunc()
 },[params])
 

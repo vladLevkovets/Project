@@ -4,7 +4,10 @@ const UserSchema=new Schema(
     {nickname:{type:String,required:true,unique:true},
      password:{type:String,required:true},
      email:{type:String,required:true,unique:true},
-     Bdate:{},
+     Bdate:{type:String},
+     country:{type:String},
+     city:{type:String},
+     slogan:{type:String}
       },
 
     {strictQuery:false})
