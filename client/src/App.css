@@ -72,11 +72,12 @@ width: 16%;
 
 .scroll{
   position: relative;
-  padding-top: 3vh;
-  height: 100%;
-  width: 22%;
-  text-align: left;
-  background-color:#0bcdf9 ;
+    padding-top: 3vh;
+    padding-bottom: 9vh;
+    height: 100%;
+    width: 23%;
+    text-align: left;
+    background-color: #0bcdf9;
   
 }
 .closed{
@@ -88,23 +89,27 @@ width: 16%;
   justify-content: center;
   width: 10%;
   height: 13vh;
-  margin-left:15vw ;
+  margin-left:16vw ;
   transition: margin 0.5s;
 }
 .closed input{
   width: 1vw;
 }
 .open{
-  padding: 1vh 2vw ;
+  padding: 1vh 1vw 0 2vw;
   background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-scroll.png);
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 94%;
   height: 13vh;
   margin-left: 1vw;
   transition: margin 0.5s;
+}
+.open input{
+  height: 2vh;
+    width: 95%;
 }
 #b1{
   margin-right: 50%;
@@ -114,15 +119,15 @@ width: 16%;
   height:10vh;
 }
 #b2{
-  width: 1em;
-  margin-top: 1%;
+  width: 1vw;
+  margin-top: 3%;
   margin-left: 90%;
-  margin-bottom: 2%;
+  margin-bottom: 0%;
   font-style: italic;
   font-family: Georgia;
   font-size: larger;
   border: 0px;
-  color:crimson ;
+  color: crimson;
   background-color: inherit;
 }
 .foto{
@@ -235,7 +240,7 @@ width: 16%;
 }
 
 /* LIBRARY component */
-#libSerch{ 
+.libSerch{ 
   display: flex;
   justify-content: center;
   padding-bottom: 1vh;
@@ -250,26 +255,27 @@ width: 16%;
   height: 60%;
   width:20vw;
 }
-#libSerch input{
+.libSerch input{
   display: inline-block;
   height: 3vh;
   width: 60vw;
 }
-#libSerch button{
+.libSerch button{
   display: inline-block;
   height: 3vh;
 }
 
 .page{
-  padding: 2vw 2vw 40vw;
-  align-items: flex-end;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: repeat(5,24vw);
-  gap: 4vw;
+  padding: 0vw 2vw 2vw;
+    align-items: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(5,29vw);
+    gap: 4vw;
+    grid-row-gap: 2vw;
   background-image: url(../src/pictures/polki-library.jpg);
-  background-size: contain;
+  background-size: 100% 100%;
   background-position: top;
 }
 .page a{
@@ -278,21 +284,21 @@ width: 16%;
 }
 
 .cell{
-  padding-left: 12%;
+  padding-left: 14%;
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 20vw;
+  height: 23vw;
   border-radius: 20px;
-  background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-big-book.png);
+  background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-2.png);
   background-size:100% 100%;
 }
 .right{
   text-align: left;
-    padding-top: 18%;
-    padding-right: 10%;
-    transform: rotate3d(39,-29,7,49deg);
-    width: 50%;
+  padding-top: 21%;
+  padding-right: 10%;
+  transform: rotate3d(39,-29,7,49deg);
+  width: 50%;
 }
 .aut{
   word-break:break-all;
@@ -324,11 +330,11 @@ width: 16%;
 }
 .left{
   height: 77%;
-    padding-bottom: 6%;
+    padding-bottom: 4%;
     text-align: right;
     transform: rotate3d(53,-27,84,31deg);
     width: 11vw;
-    padding-top: 10%;
+    padding-top: 13%;
 }
 .toBook{
   font-style:normal ;
@@ -337,29 +343,121 @@ width: 16%;
 /* END LIBRARY */
 
 
+
+/* EmptySearch */
+.emptyPage{
+  padding-left: 5vw;
+  display: flex;
+  justify-content: center;
+  height: 43.5vw;
+  background-image: url(../src/pictures/shop-temporarily-closed-sign-mockup-during-coronavirus-pandemic_53876-136188.jpg);
+  background-size: 100% 43.5vw;
+}
+#nothing {
+  box-sizing: content-box;
+    font-size: 1.5cm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    height: 16vw;
+    width: 37vw;
+    margin: 15vw 0vw 7vw 10vw;
+    background-color: #ededec;
+    rotate: -1.8deg;
+}
+#repeat{
+  box-sizing: content-box;
+  font-size: 1cm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  height: 25vw;
+  width: 33vw;
+  margin: 13vw 9vw 7vw 6vw;
+  background-color: #ededec;
+  rotate: -1.8deg;
+}
+
+
 /* SEARCH component */
 .bigPage{
-    align-items: center;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: repeat(auto, 24vw);
-    gap: 2vh;
-    background-image: url(../src/pictures/polki-search-thin.jpg);
-    background-size: 100%;
+  padding: 6vw 1vw 4vw;
+  height: max-content;
+  min-height: 56vw;
+  width:100%;
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 23% 23% 23% 23%;
+  grid-column-gap: 2vw;
+  grid-auto-rows: 24.35vw;
+  background-image: url(../src/pictures/shelf.jpg);
+  background-size: 100% 24.35vw;
     background-position: top;
-    height: max-content;
+    background-repeat: repeat-y;
 }
-.cellS{  
-  width: 100%;
+
+.cellS{
   display: flex;
-  justify-content: flex-end;
-  height: 24vw;
+  justify-content: space-between;
+  height: 100%;
   border-radius: 20px;
-  background-image: url(../src/pictures/old-book-clipart-design-illustration-free-png.webp);
-  background-size: 100% 100%;
-  margin-top: 1vh;
+    background-image: url(../src/pictures/old-book-clipart-design-illustration-free-png.webp);
+    background-size:100% 100%;
 }
+
+  .bigPage>div{
+    position: relative;
+    
+  }
+.grow{
+  padding: 5% 5% 20%;
+  height: 24.35vw;
+}
+.bigPage>div:nth-child(4n-3) .grow:hover{
+  position: absolute;
+  left:0;
+  top:-9vw;
+  background-image: url(../src/pictures/shelf.jpg);
+  background-size: 100% 100%;
+  height: 35vw;
+  width: 40vw;
+  z-index: 1;
+  padding: 38% 5% 5%;
+  border-radius: 50px;
+}
+
+.bigPage>div:nth-child(4n-2) .grow:hover, .bigPage>div:nth-child(4n-1) .grow:hover{
+  position: absolute;
+  left: -9vw;
+  top:-9vw;
+  background-image: url(../src/pictures/shelf.jpg);
+  background-size: 100% 100%;
+  height: 35vw;
+  width: 40vw;
+  z-index: 1;
+  padding: 38% 5% 5%;
+  border-radius: 50px;
+}
+
+
+
+.bigPage>div:nth-child(4n) .grow:hover{
+  position: absolute;
+  left: -16vw;
+  top:-9vw;
+  background-image: url(../src/pictures/shelf.jpg);
+  background-size: 100% 100%;
+  height: 35vw;
+  width: 40vw;
+  z-index: 1;
+  padding: 38% 5% 5%;
+  border-radius: 50px;
+}
+
+
+
 .leftS{
   padding-top: 0.5vw;
   padding-left: 2vw;
@@ -367,14 +465,14 @@ width: 16%;
 }
  .rightS{
   text-align: left;
-    padding-top: 0vw;
-    width: 49%;
-    height: 86%;
+ 
+  width: 50%;
 }
 .coverS{
-  width: 87%;
-  height: 100%;
+  height: 88%;
+  width: 93%;
 }
+
 .discr{
   color: black;
   font-style: normal;
@@ -598,3 +696,16 @@ z-index: 2;
 .form_container button{
   height: 2em;
 } 
+
+#update{
+  transform: rotate3d(0,50,0,0deg);
+  animation-name: book;
+  animation-duration: 2s;
+}
+@keyframes book {
+  0%   {transform: rotate3d(0,50,0,0deg);}
+  50%  {transform: rotate3d(-5,50,0,90deg);}
+  100%  {transform: rotate3d(0,50,0,180deg);;}
+  
+  
+}

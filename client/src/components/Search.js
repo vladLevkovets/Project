@@ -15,12 +15,13 @@ const navigate = useNavigate()
 const [page,setPage]=useState([])
 const [id,setId]=useRecoilState(idState)
 let params=useParams()
+console.log("page state",page)
 
 
-
-   const searchFunc = () => {
-    let all=200
-    let toLocal=[]
+   const searchFunc = async () => {
+    
+    let all=120 
+   
     
     let url=`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`
     console.log(url)
@@ -30,28 +31,31 @@ let params=useParams()
       if (books!==null){
         setPage([...books])
       }else{   
-    
-        for (let i=0;i<all;i+=40){
-     axios
-          .get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&startIndex=${i}&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
-          .then(res=>{
-            console.log(res)
-            
-            toLocal.push(...res.data.items)
-            localStorage.setItem(url,JSON.stringify(toLocal));
-            setPage([...toLocal])
-            })
-          .catch(error=>{
-                console.log(error)
-            })
-        }console.log(toLocal)
-          
-    } 
+     let toLocal=[]
+    try{    
+    for (let i=0;i<all;i+=40){
+     const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&startIndex=${i}&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
+     toLocal.push(...res.data.items)
 
+    } 
+    } catch(error) {
+      console.log(error);
+    }
+     localStorage.setItem(url,JSON.stringify(toLocal))
+     console.log("tolocal",toLocal)
+     setPage([...toLocal])
+    } 
+  }   
+     
+     
+     
+
+
+ 
     
-  } 
 
 useEffect(() => {
+  
     searchFunc()
 },[params])
 
@@ -70,14 +74,15 @@ const handleChange=(e)=>{
   }
 
   const search=(e)=>{
-    // e.preventDefault()
+    e.preventDefault()
   setTitle(tit)
   navigate(`/Search/${tit}`)
 } 
 const printList=()=>{
     if (page.length > 0) {return page.map((book,i)=>{
-                return <div key={i}>
+                return <div key={i} >
                 <Link to={`/Libro/${book.id}+inauthor:${book.volumeInfo.title}`} className="toBook" >
+     <div className="grow">
     <div className="cellS">
       <div className="leftS">
       <p className="discr">Author:</p>  
@@ -90,6 +95,7 @@ const printList=()=>{
       <div className="rightS">
       <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="cover" className="coverS"/>
       </div>
+    </div>
     </div>
     </Link>
                  </div>
@@ -108,11 +114,10 @@ const printList=()=>{
            <input onChange={handleChange}/>
            <button>Search</button>
            </form>
-           
-           <section className="bigPage">
-            {printList()}
-           </section>
-           
+            <section className="bigPage">
+              {printList()}
+              </section>
+            
      </div>
     )
 

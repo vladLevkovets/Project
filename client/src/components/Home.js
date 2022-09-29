@@ -1,9 +1,6 @@
 import {useState,useEffect} from 'react'
 import axios from 'axios'
 import {Link} from "react-router-dom"
-import rec from '../pictures/imgonline-com-ua-Transparent-backgr-VSx89Zmmr9KisCk2.png'
-import newest from '../pictures/imgonline-com-ua-Transparent-backgr-ohqmyHEgsiiH.png'
-import rate from '../pictures/imgonline-com-ua-Transparent-backgr-p2rdNzwSm3Yodh.png'
 export default function Home() {
 
 const [page,setPage]=useState([])

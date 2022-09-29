@@ -22,7 +22,7 @@ export default  function Nav () {
                 {/* <NavLink> */}
                     <p>Categories</p>
                     {/* </NavLink> */}
-                <NavLink>
+                <NavLink to="/Profile">
                     <p>Profile</p>
                     </NavLink>
             </div>

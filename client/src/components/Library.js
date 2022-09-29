@@ -84,10 +84,8 @@ const printList=()=>{
 return (
     
      <div>
-        <div>
-         
-         </div>
-          <form onSubmit={search} id="libSerch">
+        
+          <form onSubmit={search}className="libSerch" >
            <input onChange={handleChange}/>
            <button>Search</button>
            </form>

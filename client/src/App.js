@@ -7,9 +7,11 @@ import Nav from './components/Nav'
 import Library from './components/Library'
 import Registry from './components/Registry'
 import Libro from'./components/Libro'
+import EmptySearch from './components/EmptySearch.js'
 import Search from './components/Search.js'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import Profile from './components/Profile'
 export default function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -64,9 +66,9 @@ const login = (token) => {
             <Route path="/Library" element={<Library/>}/>
             <Route path="/Registry" element={<Registry setIsLoggedIn={setIsLoggedIn}/>}/> 
             <Route path="/Libro/:id" element={<Libro isLoggedIn={isLoggedIn}/>}/>
+            <Route path="/Search/" element={<EmptySearch/>}/>
             <Route path="/Search/:title" element={<Search/>}/>
-            
-          
+            <Route path="/Profile" element={<Profile/>}/>
             
         
         
