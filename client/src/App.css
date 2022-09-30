@@ -72,7 +72,7 @@ width: 16%;
 
 .scroll{
   position: relative;
-    padding-top: 3vh;
+    padding-top: 1.5vh;
     padding-bottom: 9vh;
     height: 100%;
     width: 23%;
@@ -96,27 +96,35 @@ width: 16%;
   width: 90%;
 }
 .open{
-  padding: 1vh 1vw 0 2vw;
+  padding: 0vh 1vw 0 2vw;
   background-image: url(../src/pictures/imgonline-com-ua-Transparent-backgr-scroll.png);
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 94%;
-  height: 13vh;
+  width: 91%;
+  height: 17vh;
   margin-left: 1vw;
   transition: margin 0.5s;
 }
 .open input{
-  height: 2vh;
+  margin-top: 3%;
+  height: 25%;
     width: 95%;
 }
 #b1{
+  margin-top: 3%;
+  font-size: 2vhvh;
+  height:25%;
   margin-right: 50%;
   background-color: moccasin;
 }
 #scrollIn{
   height:10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
 }
 #b2{
   width: 1vw;
@@ -697,15 +705,114 @@ z-index: 2;
   height: 2em;
 } 
 
-#update{
+
+
+/* PROFILE component */
+#profile{padding-left: 30%;
+  height:52vw;
+  background-image: url(../src/pictures/wood-office-desk-table-with-laptop-computer-smartphone-supplies-top-view-flat-lay-background-with-copyspace_33795-426.jpg);
+  background-size: 100% 100%;
+
+} 
+#entireBook{
+  position: relative;
+  height: 52vw;
+}
+#update{  
+  height: 100%;
   transform: rotate3d(0,50,0,0deg);
   animation-name: book;
   animation-duration: 2s;
 }
-@keyframes book {
+/* @keyframes book {
   0%   {transform: rotate3d(0,50,0,0deg);}
   50%  {transform: rotate3d(-5,50,0,90deg);}
   100%  {transform: rotate3d(0,50,0,180deg);;}
   
   
+} */
+
+#now{
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  position: absolute;
+  top:19%;
+  left:15%
+}
+.fresh{
+  background-color: rgb(226, 229, 226);
+  border: 0px;
+  width:16px;
+  height:16px ;
+  border-radius: 8px;
+}
+.fresh:hover{
+  background-color: rgb(27, 223, 27);
+}
+#now img{
+  border: 0px;
+ size: 16px;
+ border-radius: 8px;
+}
+#then {
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  position: absolute;
+  top:19%;
+  left:55% 
+}
+
+
+.Hidden{
+ visibility: hidden;
+ size: 10vw 2vh;
+}
+.nickVis{
+visibility: visible;
+size: 10vw 2vh;
+}
+.mailVis{
+visibility: visible;
+size: 10vw 2vh;
+}
+.country{
+visibility: visible;
+size: 10vw 2vh;
+}
+.cityVis{
+visibility: visible;
+size: 10vw 2vh;
+}
+.dateVis{
+visibility: visible;
+size: 10vw 2vh;
+}
+.slogVis{
+visibility: visible;
+size: 10vw 2vh;
+}
+.butVis{
+  visibility: visible;
+  height: 5vh; 
+}
+#pass\del{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+}
+#newpass{
+  width: 40%;
+  height: 5vh;
+}
+#delete{
+  color: orange;
+  background-color: darkred;
+  width: 40%;
+  height: 5vh;
 }
