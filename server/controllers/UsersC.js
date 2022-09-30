@@ -39,7 +39,7 @@ class UsersCons {
   async login(req, res) {
     const { nickname, password } = req.body;
     if (!nickname || !password){
-      res.send({ ok: false, message: "All field are required" });
+     return res.send({ ok: false, message: "All field are required" });
     }
     try {
       const user = await UsersM.findOne({ nickname });
