@@ -7,7 +7,7 @@ const jwt_secret = process.env.JWT_SECRET;
 
 class UsersCons {
   async add(req, res) {
-    let { nickname, password, email } = req.body;
+    let { email,nickname,country,city,slogan} = req.body;
     if (!email || !password || !nickname){
        res.json({
         ok: false,
@@ -19,16 +19,16 @@ class UsersCons {
         message: "WRONG DATA PROVIDED FILL IN AND CHECK ALL FIELDS",
       });}
     try {
-      const mail = await UsersM.findOne({ email }) 
+      const user = await UsersM.findOne({ email }) 
       let ex = await UsersM.findOne({ nickname });
-      if (ex || mail){
+      if (ex || user){
         res.json({
           ok: false,
           message: `WRONG DATA PROVIDED USER OR EMAIL IS ALLREADY EXIST `,
         });}
       const hash = await argon2.hash(password);
       const here = await UsersM.create({ nickname, password: hash, email });
-      const token = jwt.sign({email}, jwt_secret, { expiresIn: "7d" });
+      const token = jwt.sign({email,nickname,country,city,slogan}, jwt_secret, { expiresIn: "7d" });
       res.json({ ok: true, token, nickname, message: "ALL RIGHT" });
       
     } catch (error) {
