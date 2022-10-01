@@ -7,14 +7,14 @@ const jwt_secret = process.env.JWT_SECRET;
 
 class UsersCons {
   async add(req, res) {
-    let { email,nickname,country,city,slogan} = req.body;
+    let {password, email,nickname,country,city,slogan} = req.body;
     if (!email || !password || !nickname){
-       res.json({
+      return res.json({
         ok: false,
         message: "WRONG DATA PROVIDED FILL IN AND CHECK ALL FIELDS",
       });}
     if (!validator.isEmail(email)){
-       res.json({
+      return res.json({
         ok: false,
         message: "WRONG DATA PROVIDED FILL IN AND CHECK ALL FIELDS",
       });}
@@ -22,17 +22,22 @@ class UsersCons {
       const user = await UsersM.findOne({ email }) 
       let ex = await UsersM.findOne({ nickname });
       if (ex || user){
-        res.json({
+       return res.json({
           ok: false,
           message: `WRONG DATA PROVIDED USER OR EMAIL IS ALLREADY EXIST `,
-        });}
+        })
+      }else{
       const hash = await argon2.hash(password);
-      const here = await UsersM.create({ nickname, password: hash, email });
-      const token = jwt.sign({email,nickname,country,city,slogan}, jwt_secret, { expiresIn: "7d" });
-      res.json({ ok: true, token, nickname, message: "ALL RIGHT" });
+      const here = await UsersM.create({ nickname, password: hash, email});
+      console.log(here,here._id.toString())
+      const token = jwt.sign({email,nickname,_id:here._id}, jwt_secret, { expiresIn: "7d" });
+      console.log(token)
+      
+      res.json({ ok: true, token,here, message: "ALL RIGHT" })
+    }
       
     } catch (error) {
-      res.json({ error });
+     return res.json({ error });
     }
   }
 
@@ -57,7 +62,7 @@ class UsersCons {
       }
     }
      catch (error) {
-      res.send({ ok: false, error });
+     return res.send({ ok: false, error });
     }
   }
 
@@ -84,16 +89,33 @@ class UsersCons {
   }
 
   async update(req, res) {
-    let {password,nickname,email,Bdate,country,city,slogan}=req.body
+    let {_id,password,nickname,email,Bdate,country,city,slogan}=req.body
+    console.log(password)
     try{
-     let man=await UsersM.findOne(_id)
-     let id=man._id
+     const man = await UsersM.findOne({_id})
+     
      const match = await argon2.verify(man.password, password)
-      if (match){
-        const improove = await UsersM.updateOne(
-        {id}, {password,nickname,email,Bdate,country,city,slogan}
-        );
+     console.log(match)
+     const someOne=await UsersM.findOne({email}) 
+     console.log(someOne._id.toString())
+     const oneMore=await UsersM.findOne({nickname})
+     console.log(oneMore._id.toString())
+      if (someOne._id.toString()!==man._id.toString()){
+        return res.send({ok:false,message:"email buzy"})
       }
+      if (oneMore._id.toString()!==man._id.toString()){
+        return res.send({ok:false,message:"nickname buzy"})
+      }
+      if (match ){
+        const improove = await UsersM.updateOne(
+        {_id}, {nickname,email,Bdate,country,city,slogan}
+        );
+        console.log({_id,email,nickname,Bdate,country,slogan,city})
+        const token = jwt.sign({_id,email,nickname,Bdate,country,slogan,city}, jwt_secret, { expiresIn: "7d" });
+        
+       return res.json({ ok: true, token,nickname,email,Bdate,country,slogan,city});
+      }
+
     }
     catch(error){
       res.send({error});

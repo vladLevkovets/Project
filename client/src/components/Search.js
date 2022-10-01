@@ -36,12 +36,14 @@ console.log("page state",page)
     for (let i=0;i<all;i+=40){
      const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${params.title}&printType=books&startIndex=${i}&maxResults=40&filter=partial&key=AIzaSyC7KC4znmh7O8E5SSSXjgdbpLynsAG7Fqg`)
      toLocal.push(...res.data.items)
+     console.log(toLocal)
 
     } 
     } catch(error) {
       console.log(error);
     }
      localStorage.setItem(url,JSON.stringify(toLocal))
+
      console.log("tolocal",toLocal)
      setPage([...toLocal])
     } 
@@ -109,7 +111,7 @@ const printList=()=>{
         
         {/* <Link to="/Library"><img src={doorPic} alt="back" class="dveri"/></Link> */}
          {/* {alfabet()} */}
-         <form onSubmit={search} id="libSerch">
+         <form onSubmit={search} className="libSerch">
          <Link to="/Library" ><img src={doorPic} alt="back" className="dveri"/></Link>
            <input onChange={handleChange}/>
            <button>Search</button>

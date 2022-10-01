@@ -54,7 +54,7 @@ const BookViewer = () => {
 
     return (
     <div >
-    <form onSubmit={search} id="libSerch">
+    <form onSubmit={search} className="libSerch">
          <Link to="/Library" ><img src={doorPic} alt="back" className="dveri"/></Link>
            <input onChange={handleChange}/>
            <button>Search</button>
