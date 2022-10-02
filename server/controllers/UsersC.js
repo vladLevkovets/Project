@@ -54,7 +54,7 @@ class UsersCons {
       const match = await argon2.verify(user.password, password);
       if (match) {
         // once user is verified and confirmed we send back the token to keep in localStorage in the client and in this token we can add some data -- payload -- to retrieve from the token in the client and see, for example, which user is logged in exactly. The payload would be the first argument in .sign() method. In the following example we are sending an object with key userEmail and the value of email coming from the "user" found in line 47
-        const token = jwt.sign({nickname,email:user.email,status:user.status}, jwt_secret, { expiresIn: "7d" }); //{expiresIn:'365d'}
+        const token = jwt.sign({nickname,email:user.email,status:user.status,_id:user._id,Bdate:user.Bdate,country:user.country,slogan:user.slogan,city:user.city}, jwt_secret, { expiresIn: "7d" }); //{expiresIn:'365d'}
         // after we send the payload to the client you can see how to get it in the client's Login component inside handleSubmit function
        return res.json({ ok: true, message: "welcome back", token, nickname });
       } else {
@@ -93,18 +93,21 @@ class UsersCons {
     console.log(password)
     try{
      const man = await UsersM.findOne({_id})
-     
+     console.log(man)
      const match = await argon2.verify(man.password, password)
      console.log(match)
-     const someOne=await UsersM.findOne({email}) 
-     console.log(someOne._id.toString())
+     const some=await UsersM.findOne({email}) 
+     console.log(some)
      const oneMore=await UsersM.findOne({nickname})
-     console.log(oneMore._id.toString())
-      if (someOne._id.toString()!==man._id.toString()){
-        return res.send({ok:false,message:"email buzy"})
+     console.log(oneMore)
+      if (some!==null && some._id.toString()!==man._id.toString()){
+        return res.send({ok:false,type:"email"})
       }
-      if (oneMore._id.toString()!==man._id.toString()){
-        return res.send({ok:false,message:"nickname buzy"})
+      if (oneMore!==null && oneMore._id.toString()!==man._id.toString()){
+        return res.send({ok:false,type:"nick"})
+      }
+      if (!match){
+        return res.json({ok:false,message:"wrong password"})
       }
       if (match ){
         const improove = await UsersM.updateOne(
@@ -122,19 +125,50 @@ class UsersCons {
      }
   }
    
+  async passwords(req,res){
+    let {_id,password,newPassword1,newPassword2}=req.body
+    console.log(password)
+    try{
+     const man = await UsersM.findOne({_id})
+     console.log(man)
+     const match = await argon2.verify(man.password, password)
+     console.log(match)
+      if (!password || !newPassword1 || !newPassword2)
+        return res.json({ok:false,message:"All fields required"})
+      if (newPassword1!==newPassword2) 
+        return res.json({ok:false,message:"Password's not matched"}) 
+      if (!match)
+         return res.json({ok:false,message:"Wrong password"})
+      if (match ){
+        const hash = await argon2.hash(password)
+        const improove = await UsersM.updateOne(
+        {_id}, {password:hash});
+        console.log({improove})
+        return res.json({ ok: true,message: 'password succesfully chenged'});
+      }
+
+    }
+    catch(error){
+      res.send({error});
+     }
+    
+
+
+}
 
   async delete (req, res){
-    let {email,nickname,password} = req.body;
+    let {_id,newPassword2} = req.body;
     console.log(req.body)
     try{
-        let man=await UsersM.findOne({email})
+        let man=await UsersM.findOne({_id})
         console.log(man)
-        const match = await argon2.verify(man.password, password)
+        const match = await argon2.verify(man.password, newPassword2)
         console.log(match)
       if (match){
-        const removed = await UsersM.deleteOne({email});
-        console.log({nickname});
-        res.send({ok:true,message:`Good buy, ${nickname}!  We'll remember you!`});
+        const removed = await UsersM.deleteOne({_id});
+        res.send({ok:true});
+        }else if (!match){
+          res.send({ok:false,message:"WRONG PASSWORD"})
         }
         
     } 

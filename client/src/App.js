@@ -60,7 +60,7 @@ const login = (token) => {
     <Router>
        <div className='Main'>
        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/> 
-      <Nav className="nav"/>
+      <Nav className="nav" isLoggedIn={isLoggedIn}/>
         <Routes>
             <Route path="/" element={<Home />}/> 
             <Route path="/Library" element={<Library/>}/>
@@ -68,7 +68,7 @@ const login = (token) => {
             <Route path="/Libro/:id" element={<Libro isLoggedIn={isLoggedIn}/>}/>
             <Route path="/Search/" element={<EmptySearch/>}/>
             <Route path="/Search/:title" element={<Search/>}/>
-            <Route path="/Profile" element={<Profile/>}/>
+            <Route path="/Profile" element={<Profile setIsLoggedIn={setIsLoggedIn}/>}/>
             
         
         

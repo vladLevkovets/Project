@@ -29,6 +29,7 @@ export default function Header({ isLoggedIn,setIsLoggedIn }) {
   };
   const closeScroll = () => {
     setToLog("closed");
+    setMessage("")
   };
   const LOGIN = (e) => {
     e.preventDefault();
@@ -67,6 +68,7 @@ export default function Header({ isLoggedIn,setIsLoggedIn }) {
 
   useEffect(() => {
     setValues({ ...form, nickname: "", password: "" })
+    setToLog("closed")
     console.log(isLoggedIn)
   }, []);
 
