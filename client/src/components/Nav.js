@@ -1,14 +1,11 @@
 import { NavLink } from "react-router-dom"
-import { useState } from "react"
-import { useRecoilState } from "recoil"
+import * as jose from "jose";
+import { useState } from "react";
 
-export default  function Nav ({isLoggedIn}) {
-
-
-
-
-
-
+export default  function Nav ({isLoggedIn,status}) {
+    
+   
+    
 
     return <div id="nav">
            
@@ -19,9 +16,13 @@ export default  function Nav ({isLoggedIn}) {
                 <NavLink to="/Library">
                    <p> Library</p>
                     </NavLink>
+                <NavLink to="/Search">
+                   <p> Search</p>
+                    </NavLink>   
+                {(status==="admin" ) &&  
                 <NavLink to="/Admin">
                     <p>Admin</p>
-                    </NavLink>
+                    </NavLink>}
                 {isLoggedIn &&   
                 <NavLink to="/Profile">
                     <p>Profile</p>

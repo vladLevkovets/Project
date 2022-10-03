@@ -8,13 +8,13 @@ function Admin() {
 const[books,setBooks]=useState([])
 const[users,setUsers]=useState([])
 const[text,setText]=useState("answer")
-const[form,setForm]=useState({email:["vl.vladisla@gmail.com","projectlibraryserver@gmail.com","kornasnorge@gmail.com"],nickname:["Vlad",'Server',"Pawel"],subject:"test letter from library",message:"there is first letter from my server"})
+const[form,setForm]=useState({emails:["vl.vladisla@gmail.com","projectlibraryserver@gmail.com",],nicknames:["vlad","server"],subject:"test letter from library",message:"there is personal letter from my server to each user from array ) "})
 let params=useParams()    
 
 const USERS = async ()=>{
    try { 
        const res= await axios.get('http://localhost:4040/users/find',form)
-        console.log(res)
+        console.log(res.data.message)
         // setMessage(res.message)
    }
    catch(error){
@@ -64,9 +64,12 @@ const Up = async()=>{
 const Mail = async()=>{
    try{
      console.log("form",form)
-     const res = await axios.post(`http://localhost:4040/users/mail`,form)
-        setText(res.data.message)
-        
+     const res = await axios.post(`http://localhost:4040/users/mail`,form)  
+     console.log(res.data.message)
+     setText(res.data.message)
+      setTimeout(() => {
+        setText(" ")
+      }, 2000);  
         
         
     

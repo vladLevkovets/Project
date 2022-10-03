@@ -13,11 +13,12 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Profile from './components/Profile'
 import Admin from './components/Admin'
+import * as jose from "jose"
 
 export default function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-
+  const [status,setStatus]=useState("user")
   const [token, setToken] = useState(JSON.parse(localStorage.getItem('token')));
 
   useEffect(
@@ -29,6 +30,9 @@ export default function App() {
           if (!token) {
             setIsLoggedIn(false)
           }else {
+            let data= jose.decodeJwt(token)
+           setStatus(data.status)
+           
           axios.defaults.headers.common['Authorization'] = token;
           const response = await axios.post(`http://localhost:4040/users/verify_token`);
           console.log(response)
@@ -62,13 +66,13 @@ const login = (token) => {
     <Router>
        <div className='Main'>
        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/> 
-      <Nav className="nav" isLoggedIn={isLoggedIn}/>
+      <Nav className="nav" isLoggedIn={isLoggedIn} status={status} />
         <Routes>
             <Route path="/" element={<Home />}/> 
             <Route path="/Library" element={<Library/>}/>
             <Route path="/Registry" element={<Registry setIsLoggedIn={setIsLoggedIn}/>}/> 
             <Route path="/Libro/:id" element={<Libro isLoggedIn={isLoggedIn}/>}/>
-            <Route path="/Search/" element={<EmptySearch/>}/>
+            <Route path="/Search" element={<EmptySearch/>}/>
             <Route path="/Search/:title" element={<Search/>}/>
             <Route path="/Profile" element={<Profile setIsLoggedIn={setIsLoggedIn}/>}/>
             <Route path="/Admin" element={<Admin/>}/>

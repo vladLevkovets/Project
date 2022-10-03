@@ -9,8 +9,7 @@ const UserSchema=new Schema(
      Bdate:{type:String},
      country:{type:String},
      city:{type:String},
-     slogan:{type:String},
-     id:{type:String}
+     slogan:{type:String}
       },
 
     {strictQuery:false})

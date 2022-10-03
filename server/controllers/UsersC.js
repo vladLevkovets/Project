@@ -73,7 +73,7 @@ class UsersCons {
         // once user is verified and confirmed we send back the token to keep in localStorage in the client and in this token we can add some data -- payload -- to retrieve from the token in the client and see, for example, which user is logged in exactly. The payload would be the first argument in .sign() method. In the following example we are sending an object with key userEmail and the value of email coming from the "user" found in line 47
         const token = jwt.sign({nickname,email:user.email,status:user.status,_id:user._id,Bdate:user.Bdate,country:user.country,slogan:user.slogan,city:user.city}, jwt_secret, { expiresIn: "7d" }); //{expiresIn:'365d'}
         // after we send the payload to the client you can see how to get it in the client's Login component inside handleSubmit function
-       return res.json({ ok: true, message: "welcome back", token, nickname });
+       return res.json({ ok: true, token });
       } else {
        return res.send({ ok: false, message: "invalid data provided" });
       }
@@ -115,7 +115,7 @@ class UsersCons {
   }
 
   async update(req, res) {
-    let {_id,password,nickname,email,Bdate,country,city,slogan}=req.body
+    let {_id,password,nickname,email,status,Bdate,country,city,slogan}=req.body
     console.log(password)
     try{
      const man = await UsersM.findOne({_id})
@@ -140,9 +140,9 @@ class UsersCons {
         {_id}, {nickname,email,Bdate,country,city,slogan,}
         );
         console.log({_id,email,nickname,Bdate,country,slogan,city})
-        const token = jwt.sign({_id,email,nickname,Bdate,country,slogan,city}, jwt_secret, { expiresIn: "7d" });
+        const token = jwt.sign({_id,email,nickname,status,Bdate,country,slogan,city}, jwt_secret, { expiresIn: "7d" });
         
-       return res.json({ ok: true, token,nickname,email,Bdate,country,slogan,city});
+       return res.json({ ok: true, token});
       }
 
     }
@@ -152,7 +152,7 @@ class UsersCons {
   }
    
 async passwords(req,res){
-    let {_id,password,newPassword1,newPassword2,nickname,email,Bdate,country,city,slogan}=req.body
+    let {_id,password,newPassword1,newPassword2,nickname,email,status,Bdate,country,city,slogan}=req.body
     console.log(password)
     try{
      const man = await UsersM.findOne({_id})
@@ -170,7 +170,7 @@ async passwords(req,res){
         const improove = await UsersM.updateOne(
         {_id}, {password:hash});
         console.log({improove})
-        const token = jwt.sign({_id,password,email,nickname,Bdate,country,slogan,city}, jwt_secret, { expiresIn: "7d" })
+        const token = jwt.sign({_id,email,nickname,status,Bdate,country,slogan,city}, jwt_secret, { expiresIn: "7d" })
         return res.json({ ok: true,message: 'password succesfully chenged'});
       }
 
@@ -182,18 +182,18 @@ async passwords(req,res){
 
 async mail  (req, res) {
   console.log(req.body)
-  const { email,nickname, subject, message } = req.body;
+  const { emails,nicknames, subject, message } = req.body;
     try{
-      for (let i=0;i<=email.length-1;i++){
-       
+      for (let i=0;i<emails.length;i++) { 
+        let name=nicknames[i]
        const mailOptions = {
-         to: email[i],
+         to: emails[i],
          subject: subject,
-         html: '<p>' + (`Hello, ${nickname[i]}`) + '</p><p><pre>' + message + '</pre></p>'
+         html: '<p>' + `Hello,${nicknames[i]}`  + '</p><p><pre>' + message + '</pre></p>'
        }
          const success = await transport.sendMail(mailOptions);
          console.log("success: ", success)
-        }
+      }
          return res.json({ ok: true, message: 'emails sent' });
       }
     catch (err) {

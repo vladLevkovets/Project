@@ -130,12 +130,12 @@ const leaf = ()=>{
 const leafMore = async()=>{
 
         
-         console.log(form)
-         let localToken=JSON.parse(localStorage.getItem("token"))
-         console.log(localToken)
-         let tokenObj=(jose.decodeJwt(localToken))
-         console.log(tokenObj)
-         let _id=tokenObj._id
+        //  console.log(form)
+        //  let localToken=JSON.parse(localStorage.getItem("token"))
+        //  console.log(localToken)
+        //  let tokenObj=(jose.decodeJwt(localToken))
+        //  console.log(tokenObj)
+         let _id=tokenData._id
          try {
             console.log({...form,_id})
             const res = await axios.post(`http://localhost:4040/users/update`, {...form,_id});
@@ -221,11 +221,7 @@ const toPasswords= async()=>{
 
 const PassChange = async()=>{
 
-    let localToken=JSON.parse(localStorage.getItem("token"))
-     
-    let tokenObj=(jose.decodeJwt(localToken))
-    
-    let _id=tokenObj._id
+    let _id=tokenData._id
     
     try {
        console.log({form})
@@ -335,10 +331,8 @@ const TotalA=async()=>{
     setText("PASSWORDS DOESN'T MATCHED ")
  }  
 if(textPass1===textPass2){
-   
-    let localToken=JSON.parse(localStorage.getItem("token"))
-    let tokenObj=(jose.decodeJwt(localToken))
-    let _id=tokenObj._id
+
+    let _id=tokenData._id
     try {
        const res = await axios.post(`http://localhost:4040/users/delete`, {...form,_id});
        if (res.data.ok===true) {
