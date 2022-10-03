@@ -12,6 +12,8 @@ import Search from './components/Search.js'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Profile from './components/Profile'
+import Admin from './components/Admin'
+
 export default function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -69,7 +71,7 @@ const login = (token) => {
             <Route path="/Search/" element={<EmptySearch/>}/>
             <Route path="/Search/:title" element={<Search/>}/>
             <Route path="/Profile" element={<Profile setIsLoggedIn={setIsLoggedIn}/>}/>
-            
+            <Route path="/Admin" element={<Admin/>}/>
         
         
         </Routes>

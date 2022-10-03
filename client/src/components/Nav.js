@@ -19,9 +19,9 @@ export default  function Nav ({isLoggedIn}) {
                 <NavLink to="/Library">
                    <p> Library</p>
                     </NavLink>
-                {/* <NavLink> */}
-                    <p>Categories</p>
-                    {/* </NavLink> */}
+                <NavLink to="/Admin">
+                    <p>Admin</p>
+                    </NavLink>
                 {isLoggedIn &&   
                 <NavLink to="/Profile">
                     <p>Profile</p>

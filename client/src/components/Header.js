@@ -17,6 +17,10 @@ export default function Header({ isLoggedIn,setIsLoggedIn }) {
   console.log("header",isLoggedIn)
   const [token, setToken] = useState(JSON.parse(localStorage.getItem("token")));
 
+  useEffect(()=>{
+    setToLog("closed")
+  },[isLoggedIn])
+
   const handleChange = (e) => {
     setValues({ ...form, [e.target.name]: e.target.value });
   };

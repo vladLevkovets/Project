@@ -331,6 +331,9 @@ const toRoutine=()=>{
 
 const TotalA=async()=>{
     console.log(textPass1,textPass2)
+ if(textPass1!==textPass2) {
+    setText("PASSWORDS DOESN'T MATCHED ")
+ }  
 if(textPass1===textPass2){
    
     let localToken=JSON.parse(localStorage.getItem("token"))
@@ -417,7 +420,7 @@ return<div id="profile">
 <input name="email" type="email" placeholder="new email"  onChange={handleChange} value={textMail} className={showMail ? "mailVis" :"Hidden"}/>
 <p className={showMailP?"mailPVis":"Hidden"}>allready in use </p>
 </div>
-:<input name="email" type="email" placeholder="new email"  onChange={handleChange} value={textMail} className={showMail ? "mailVis" :"Hidden"}/>
+:<input name="email" type="password" placeholder="new email"  onChange={handleChange} value={textMail} className={showMail ? "mailVis" :"Hidden"}/>
 }
 <input name="country" placeholder="new country"  onChange={handleChange} value={textContry} className={showCountry ? "contrVis" :"Hidden"}/>
 <input name="city" placeholder="new city"   onChange={handleChange} value={textCity} className={showCity ? "cityVis" :"Hidden"}/>
