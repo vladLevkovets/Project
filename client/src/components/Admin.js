@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React ,{useState, useEffect } from 'react'
 import {Link,useParams} from "react-router-dom"
-import {URL} from "./config.js"
+import {URL} from "../config.js"
 
 
 function Admin() {

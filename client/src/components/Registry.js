@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {URL} from "./config.js"
+import {URL} from "../config.js"
 
 const Registry = ({setIsLoggedIn}) => {
   const [form, setValues] = useState({

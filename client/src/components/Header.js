@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import * as jose from "jose";
 import axios from "axios";
 import foto from "../pictures/wellcome.jfif";
-import {URL} from "./config.js"
+import {URL} from "../config.js"
 
 
 export default function Header({ isLoggedIn,setIsLoggedIn }) {

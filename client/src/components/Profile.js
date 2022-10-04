@@ -3,7 +3,7 @@ import fresh from "../pictures/icons8-refresh-16.png"
 import * as jose from "jose";
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {URL} from "./config.js"
+import {URL} from "../config.js"
 
 export default function Profile ({setIsLoggedIn}) {
     const [token, setToken] = useState(JSON.parse(localStorage.getItem("token"))) 
