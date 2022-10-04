@@ -3,6 +3,7 @@ import fresh from "../pictures/icons8-refresh-16.png"
 import * as jose from "jose";
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {URL} from "./config.js"
 
 export default function Profile ({setIsLoggedIn}) {
     const [token, setToken] = useState(JSON.parse(localStorage.getItem("token"))) 
@@ -138,7 +139,7 @@ const leafMore = async()=>{
          let _id=tokenData._id
          try {
             console.log({...form,_id})
-            const res = await axios.post(`http://localhost:4040/users/update`, {...form,_id});
+            const res = await axios.post(`${URL}/users/update`, {...form,_id});
             console.log(res)
             if (res.data.ok===true) {
 

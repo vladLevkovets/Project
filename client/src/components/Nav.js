@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom"
 import * as jose from "jose";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default  function Nav ({isLoggedIn,status}) {
     
-   
+   useEffect(()=>{
+
+   },[status])
     
 
     return <div id="nav">

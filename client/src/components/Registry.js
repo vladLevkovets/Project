@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {URL} from "./config.js"
 
 const Registry = ({setIsLoggedIn}) => {
   const [form, setValues] = useState({
@@ -22,7 +23,7 @@ const Registry = ({setIsLoggedIn}) => {
     console.log();
     if (form.password === form.password2) {
       axios
-        .post(`http://localhost:4040/users/add`, {
+        .post(`${URL}/users/add`, {
           email: form.email,
           password: form.password,
           nickname: form.nickname,

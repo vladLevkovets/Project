@@ -1,19 +1,19 @@
 import axios from 'axios'
 import React ,{useState, useEffect } from 'react'
 import {Link,useParams} from "react-router-dom"
-
+import {URL} from "./config.js"
 
 
 function Admin() {
 const[books,setBooks]=useState([])
 const[users,setUsers]=useState([])
 const[text,setText]=useState("answer")
-const[form,setForm]=useState({emails:["vl.vladisla@gmail.com","projectlibraryserver@gmail.com",],nicknames:["vlad","server"],subject:"test letter from library",message:"there is personal letter from my server to each user from array ) "})
+const[form,setForm]=useState({emails:["vl.vladisla@gmail.com","projectlibraryserver@gmail.com"],nicknames:["vlad","server"],subject:"test letter from library",message:"there is personal letter from my server to each user from array ) "})
 let params=useParams()    
 
 const USERS = async ()=>{
    try { 
-       const res= await axios.get('http://localhost:4040/users/find',form)
+       const res= await axios.get(`${URL}/users/find`,form)
         console.log(res.data.message)
         // setMessage(res.message)
    }
@@ -64,12 +64,12 @@ const Up = async()=>{
 const Mail = async()=>{
    try{
      console.log("form",form)
-     const res = await axios.post(`http://localhost:4040/users/mail`,form)  
+     const res = await axios.post(`${URL}/users/mail`,form)  
      console.log(res.data.message)
-     setText(res.data.message)
-      setTimeout(() => {
-        setText(" ")
-      }, 2000);  
+    //  setText(res.data.message)
+    //   setTimeout(() => {
+    //     setText(" ")
+    //   }, 2000);  
         
         
     

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import * as jose from "jose";
 import axios from "axios";
 import foto from "../pictures/wellcome.jfif";
+import {URL} from "./config.js"
 
 
 export default function Header({ isLoggedIn,setIsLoggedIn }) {
@@ -39,7 +40,7 @@ export default function Header({ isLoggedIn,setIsLoggedIn }) {
     e.preventDefault();
     console.log(e.target);
     axios
-      .post(`http://localhost:4040/users/login`, {
+      .post(`${URL}/users/login`, {
         nickname: form.nickname,
         password: form.password,
       })

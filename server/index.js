@@ -26,7 +26,15 @@ connecting()
 // routes
 app.use('/users', UsersR);
 
+const path=require('path');
 
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname,'../client/build')));
+
+app.get('/*',function(req,res){
+    res.sendFile(path.join(__dirname,'../client/build','index.html'))
+})
 
 // Set the server to listen on port 3000
-app.listen(4040, () => console.log(`server on duty`))
+PORT= process.env.PORT || 4040
+app.listen(PORT, () => console.log(`server on duty`))
