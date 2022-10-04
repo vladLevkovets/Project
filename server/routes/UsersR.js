@@ -14,5 +14,6 @@ router.post('/delete',controller.delete);
 router.post('/update',controller.update);
 router.post('/passwords',controller.passwords);
 router.post('/mail',controller.mail);
+router.get('/find',controller.find);
 router.get('/:nickname',controller.findOne);
   module.exports = router;

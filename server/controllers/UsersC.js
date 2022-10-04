@@ -114,6 +114,18 @@ class UsersCons {
     }
   }
 
+  async find(req,res){
+     try{
+      const list =await UsersM.find();
+      res.json({list});
+     }catch (error) {
+      res.json({ error });
+     }
+
+  }
+
+
+
   async update(req, res) {
     let {_id,password,nickname,email,status,Bdate,country,city,slogan}=req.body
     console.log(password)
